@@ -35,7 +35,7 @@ enum TrangThaiVe
 	daHuy
 };
 struct ds_Ve {
-	VeMB* vitringoi; //so luong ve phu thuoc so luong cho cua may bay, 1 mang dong co con tro chua thong tin ve
+	VeMB* vitriNgoi; //so luong ve phu thuoc so luong cho cua may bay, 1 mang dong co con tro chua thong tin ve
 	//int dat; //so cho da dat -dua vao mang
 
 	TrangThaiVe trangThaiVe;//dat ve - huy ve

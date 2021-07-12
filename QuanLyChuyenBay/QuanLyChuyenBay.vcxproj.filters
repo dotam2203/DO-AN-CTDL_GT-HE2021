@@ -43,5 +43,8 @@
     <ClInclude Include="GiaoDien.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="HanhKhach.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

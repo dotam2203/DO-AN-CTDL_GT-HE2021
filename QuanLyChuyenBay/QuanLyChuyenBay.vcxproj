@@ -149,6 +149,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GiaoDien.h" />
+    <ClInclude Include="HanhKhach.h" />
     <ClInclude Include="KhaiBao.h" />
     <ClInclude Include="MyLib.h" />
   </ItemGroup>
