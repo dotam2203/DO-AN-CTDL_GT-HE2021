@@ -10,26 +10,48 @@ struct HanhKhach {
 };
 typedef struct HanhKhach HANHKHACH;
 
-HANHKHACH themHanhKhach(char *cmnd, char *ho, char *ten, char *phai)
-{
-	HANHKHACH hk;
-	strcpy(hk.CMND,cmnd);
-	strcpy(hk.ho, ho);
-	strcpy(hk.ten, ten);
-	strcpy(hk.phai, phai);
-
-	return hk;
-}
-
 struct node_HanhKhach {
 	HANHKHACH info;
-	struct node_HanhKhach* letf = NULL;
-	struct node_HanhKhach* right = NULL;
+	node_HanhKhach* letf = NULL;
+	node_HanhKhach* right = NULL;
 	int slHK = 0;
 };
 typedef struct node_HanhKhach *PTR_HANHKHACH;
 PTR_HANHKHACH tree = NULL;
-
-void themNodeHanhKhach(PTR_HANHKHACH &ptrHK, HANHKHACH hk)
+void khoitaoTree(PTR_HANHKHACH& root)
 {
+	root = NULL;
+}
+
+void kiemtraCMND(char cmnd[20])
+{
+
+}
+
+node_HanhKhach* khoitaoNodeHanhKhach()
+{
+	node_HanhKhach* p = new node_HanhKhach;
+	p->letf = NULL;
+	p->right = NULL;
+	return p;
+}
+void nhapHanhKhach(node_HanhKhach ptrHK)
+{
+	node_HanhKhach* p = khoitaoNodeHanhKhach();
+	fflush(stdin);
+	gets_s(p->info.CMND);
+	gets_s(p->info.ho);
+	gets_s(p->info.ten);
+	gets_s(p->info.phai);
+	
+}
+
+node_HanhKhach *taoNodeHanhKhach( HANHKHACH hk)
+{
+	node_HanhKhach *p = new node_HanhKhach;
+	p->info = hk;
+	p->letf = NULL;
+	p->right = NULL;
+	p->slHK = 0;
+	return p;
 }

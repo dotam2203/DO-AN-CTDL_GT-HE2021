@@ -10,7 +10,7 @@ int main()
     Background();
     Khung();
     _getch();
-    system("pause");
+    //system("pause");
 
     return 0;
 }

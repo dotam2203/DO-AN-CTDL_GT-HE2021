@@ -56,8 +56,8 @@ typedef struct HanhKhach HANHKHACH;
 
 struct node_HanhKhach {
 	HANHKHACH info;
-	struct node_HanhKhach* letf = NULL;
-	struct node_HanhKhach* right = NULL;
+	node_HanhKhach* letf = NULL;
+	node_HanhKhach* right = NULL;
 	int slHK = 0;
 };
 typedef struct node_HanhKhach* PTR_HANHKHACH;
@@ -93,7 +93,7 @@ typedef struct ChuyenBay CHUYENBAY;
 
 struct node_ChuyenBay {
 	CHUYENBAY info;
-	struct node_ChuyenBay* next;
+	node_ChuyenBay* next;
 	int slCB = 0;
 };
 typedef struct node_ChuyenBay* PTR_CHUYENBAY;

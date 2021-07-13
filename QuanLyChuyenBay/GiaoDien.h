@@ -3,7 +3,7 @@
 using namespace std;
 //================================khai bao thao tac phim: F2-save; F4 - edit; Insert - add================================
 const int Up = -72, Down = -80, Left = -75, Right = -77, Enter = 13, ESC = 27, Delete = -83, Insert = -82, F2 = -60, F4 = -62, Space = 32, Backspace = 8;
-const int x1 = 0, y2 = 7 , x2 = 5;
+const int x1 = 0, y2 = 8 , w1 = 60;
 
 //================================Cau truc man hinh Console================================
 void Background()//nen:den, chu:trang =>den - trang
@@ -33,7 +33,31 @@ void TieuDe()
 }
 void menu()
 {
+	VeHCN(x1, y2, w1, 11, 11);
+	gotoXY(x1 + 25, y2 + 1); SetColor(29); cout << "HUONG DAN";
+	SetColor(11);
+	gotoXY(x1 + 10, y2 + 3); cout << " SU DUNG 4 PHIM MUI TEN DE DI CHUYEN";
+	gotoXY(x1 + 10, y2 + 4); cout << "INSERT: THEM"; 
+	gotoXY(x1 + 10, y2 + 5); cout << "DELETE: XOA";
+	gotoXY(x1 + 10, y2 + 6); cout << "F4    : SUA";
 	
+	gotoXY(x1 + 40, y2 + 4);  cout << "F2 : LUU";
+	gotoXY(x1 + 40, y2 + 5);  cout << "F4 : SUA";
+	gotoXY(x1 + 40, y2 + 6);  cout << "ESC: THOAT";
+
+	gotoXY(x1 + 25, y2 + 8); SetColor(29); cout << "THONG BAO";
+
+	VeHCN(x1, y2+12, w1, 20, 11);
+	gotoXY(x1 + 28, y2 + 14); SetColor(29); cout << "MENU";
+	SetColor(11);
+	lineW(x1, y2 + 16, w1); gotoXY(x1 + 3, y2 + 17); cout << "                  QUAN LY MAY BAY";
+	lineW(x1, y2 + 18, w1); gotoXY(x1 + 3, y2 + 19); cout << "                 QUAN LY CHUYEN BAY";
+	lineW(x1, y2 + 20, w1); gotoXY(x1 + 3, y2 + 21); cout << "                   DAT VE MAY BAY";
+	lineW(x1, y2 + 22, w1); gotoXY(x1 + 3, y2 + 23); cout << "                   HUY VE MAY BAY";
+	lineW(x1, y2 + 24, w1); gotoXY(x1 + 3, y2 + 25); cout << "       DANH SACH HANH KHACH THUOC 1 CHUYEN BAY";
+	lineW(x1, y2 + 26, w1); gotoXY(x1 + 3, y2 + 27); cout << "DANH SACH CHUYEN BAY BAY CUNG NGAY VA TOI CUNG DIA DIEM";
+	lineW(x1, y2 + 28, w1); gotoXY(x1 + 3, y2 + 29); cout << "         DANH SACH VE TRONG CUA 1 CHUYEN BAY";
+	lineW(x1, y2 + 30, w1); gotoXY(x1 + 3, y2 + 31); cout << "          THONG KE CHUYEN BAY DA HOAN THANH";
 }
 void Khung()
 {
@@ -41,11 +65,8 @@ void Khung()
 	VeHCN(178, 3, 30, 3,11);
 	gotoXY(180, 4); cout << "Bui Tan Sang - N18DCCN169";
 	gotoXY(180, 5); cout << "Do Thi Tam - N18DCCN178";
-	SetColor(11); lineW(x1, y2, 210);
-	VeHCN(x1,y2,60,42,11);
-	
-
-	
+	SetColor(11); lineW(x1, y2-1, 210);
+	menu();
 }
 
 
