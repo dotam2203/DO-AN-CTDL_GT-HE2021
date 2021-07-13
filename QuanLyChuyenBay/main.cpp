@@ -7,7 +7,7 @@ using namespace std;
 int main()
 {
     Console();
-    //Background();
+    Background();
     Khung();
     _getch();
     system("pause");
