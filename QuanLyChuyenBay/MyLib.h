@@ -130,19 +130,17 @@ void chuanHoaString(string& s)
 		}
 		else if (s[s.length() - 1] == ' ') s.erase(s.length() - 1, 1);
 	}
-	for (size_t i = 0; i < s.length(); i++) //In hoa chu cau dau
+	for (size_t i = 0; i < s.length(); i++) //In hoa toan bo chuoi
 	{
-		if (s[0] >= 97 && s[0] <= 122)
+		if (s[i] >= 97 && s[i] <= 122)
 		{
-			s[0] = s[0] - 32;
+			s[i] = s[i] - 32;
 		}
 		if (s[i] == ' ')
 		{
-			if (s[i + 1] >= 97 && s[i + 1] <= 122) s[i + 1] = s[i + 1] - 32;
-		}
-		if (s[i] != ' ')
-		{
-			if (s[i + 1] >= 65 && s[i + 1] <= 90) s[i + 1] = s[i + 1] + 32;
+			for (size_t j = 1; j <= s.length(); j++)
+				if (s[i + j] >= 97 && s[i + j] <= 122) 
+					s[i + j] = s[i + j] - 32;
 		}
 	}
 }
@@ -155,37 +153,54 @@ void textcolor(int x)
 	SetConsoleTextAttribute(mau, x);
 }
 
-void VeHCN(int toadoX, int toadoY, int chieudai, int chieucao, int mauSet)
+void lineW(int x, int y, int w)//nhap vao toa do diem dau, dài
+{
+	if (w <= 1) return;
+	for (int ix = x + 1; ix < x + w; ix++)
+	{
+		gotoXY(ix, y); cout << char(196);
+	}
+}
+void lineH(int x, int y, int h)//nhap vao toa do diem dau,cao
+{
+	if (h <= 1) return;
+	for (int iy = y; iy < y + h; iy++)
+	{
+		gotoXY(x, iy); cout << char(179);
+	}
+}
+
+void  VeHCN(int x, int y, int w, int h, int mauSet)
 {
 	SetColor(mauSet);
-	for (int i = toadoX; i <= chieudai + toadoX; i++)
+	for (int i = x; i <= w + x; i++)
 	{
-		gotoXY(i, toadoY);
-		if (i == toadoX)
+		gotoXY(i, y);
+		if (i == x)
 			cout << (char)218;
-		else if (i == chieudai + toadoX)
+		else if (i == w + x)
 			cout << (char)191;
 		else
 			cout << (char)196;
 	}
-	for (int i = toadoX; i <= chieudai + toadoX; i++)
+	for (int i = x; i <= w + x; i++)
 	{
-		gotoXY(i, chieucao + toadoY);
-		if (i == toadoX)
+		gotoXY(i, h + y);
+		if (i == x)
 			cout << (char)192;
-		else if (i == chieudai + toadoX)
+		else if (i == w + x)
 			cout << (char)217;
 		else
 			cout << char(196);
 	}
-	for (int i = toadoY + 1; i < chieucao + toadoY; i++)
+	for (int i = y + 1; i < h + y; i++)
 	{
-		gotoXY(toadoX, i);
+		gotoXY(x, i);
 		cout << (char)179;
 	}
-	for (int i = toadoY + 1; i < chieucao + toadoY; i++)
+	for (int i = y + 1; i < h + y; i++)
 	{
-		gotoXY(chieudai + toadoX, i);
+		gotoXY(w + x, i);
 		cout << (char)179;
 	}
 	SetColor(7);
