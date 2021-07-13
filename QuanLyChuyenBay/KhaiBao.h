@@ -47,7 +47,7 @@ typedef struct ds_Ve DS_VeMB;
 
 /*======================= Quan ly hanh khach - Cay nhi phan tim kiem ======================*/
 struct HanhKhach {
-	char CMND[20]; //check co so 0 ơ first
+	char CMND[20]; //check co so 0 o first
 	char ho[50];
 	char ten[10];
 	char phai[4];
@@ -55,9 +55,9 @@ struct HanhKhach {
 typedef struct HanhKhach HANHKHACH;
 
 struct node_HanhKhach {
-	HANHKHACH dsKH;
-	node_HanhKhach* letf = NULL;
-	node_HanhKhach* right = NULL;
+	HANHKHACH info;
+	struct node_HanhKhach* letf = NULL;
+	struct node_HanhKhach* right = NULL;
 	int slHK = 0;
 };
 typedef struct node_HanhKhach* PTR_HANHKHACH;
@@ -93,7 +93,7 @@ typedef struct ChuyenBay CHUYENBAY;
 
 struct node_ChuyenBay {
 	CHUYENBAY info;
-	node_ChuyenBay* next;
+	struct node_ChuyenBay* next;
 	int slCB = 0;
 };
 typedef struct node_ChuyenBay* PTR_CHUYENBAY;

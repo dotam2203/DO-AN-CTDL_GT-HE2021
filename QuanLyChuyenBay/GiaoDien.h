@@ -3,7 +3,7 @@
 using namespace std;
 //================================khai bao thao tac phim: F2-save; F4 - edit; Insert - add================================
 const int Up = -72, Down = -80, Left = -75, Right = -77, Enter = 13, ESC = 27, Delete = -83, Insert = -82, F2 = -60, F4 = -62, Space = 32, Backspace = 8;
-const int x1 = 0, y1 = 5, x2 = 5;
+const int x1 = 0, y1 = 4, x2 = 5;
 
 //================================Cau truc man hinh Console================================
 void Background()//nen:den, chu:trang =>den - trang
@@ -23,7 +23,7 @@ void Console()//khoi tao trang thai ban dau
 	resizeConsole(1600, 800);//tuong duong khung 210x105
 }
 
-void lineW(int x,int y,int w)//nhap vao toa do diem dau, dài
+void lineW(int x, int y, double w)//nhap vao toa do diem dau, dài
 {
 	if (w <= 1) return;
 	for (int ix = x+1; ix < x + w; ix++)
@@ -69,10 +69,10 @@ void Khung()
 	box(178, 0, 30, 3,11);
 	gotoXY(180, 1); cout << "Bui Tan Sang - N18DCCN169";
 	gotoXY(180, 2); cout << "Do Thi Tam - N18DCCN178";
-	gotoXY(0, 4); for (i = 0; i < 210; i++) cout << char(196);
+	lineW(x1, y1, 210);
+	box(x1, y1, 60, 42, 11);
+	
 
-	//box(x1, y1 - 1, x1 + 60, y1 * 5, 11);
-	//box(x1, y1 * 5, x1 + 60, y1 * 3, 11);
 	
 }
 
