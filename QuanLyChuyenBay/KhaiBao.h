@@ -5,8 +5,8 @@
 
  /*======================= Quan ly may bay - Mang con tro ======================*/
 struct MayBay {
-	char soHieuMB[16];//ten viet tat loai may bay+stt (001 -> 300)
-	char loaiMB[41];
+	char soHieuMB[16] = "";//ten viet tat loai may bay+stt (001 -> 300)
+	char loaiMB[41] = "";
 	int soCho;
 
 	//them chi so
@@ -25,7 +25,7 @@ typedef struct ds_Maybay DS_MAYBAY;
 /*======================= Quan ly ve may bay - Danh sach tuyen tinh cap phat dong ======================*/
 struct Ve {
 	int maVe; //tang dan theo so cho cua may bay
-	char CMND[20];//CMND:10 so - CCCD:12 so
+	char CMND[13] = "";//CMND:10 so - CCCD:12 so
 };
 typedef struct Ve VeMB;
 
@@ -35,9 +35,8 @@ enum TrangThaiVe
 	daHuy
 };
 struct ds_Ve {
-	VeMB* vitriNgoi; //so luong ve phu thuoc so luong cho cua may bay, 1 mang dong co con tro chua thong tin ve
-	//int dat; //so cho da dat -dua vao mang
-
+	VeMB* sttVe; //so luong ve phu thuoc so luong cho cua may bay, 1 mang dong co con tro chua thong tin ve
+	int soVeDaBan = 0; //so cho da dat -dua vao mang
 	TrangThaiVe trangThaiVe;//dat ve - huy ve
 	bool huyVe = true;//cho phep hanh khach huy ve
 	int veMax; //gioi han ve ma 1 nguoi duoc dat
@@ -47,10 +46,10 @@ typedef struct ds_Ve DS_VeMB;
 
 /*======================= Quan ly hanh khach - Cay nhi phan tim kiem ======================*/
 struct HanhKhach {
-	char CMND[20]; //check co so 0 o first
-	char ho[50];
-	char ten[10];
-	char phai[4];
+	char CMND[13] =""; //check co so 0 o first
+	char ho[50] = "";
+	char ten[10] = "";
+	char phai[4] = "";
 };
 typedef struct HanhKhach HANHKHACH;
 
@@ -81,11 +80,11 @@ enum TrangThaiCB
 	hoanTat
 };
 struct ChuyenBay {
-	char maCB[16]; //CB+NGAY+THANG (khoi hanh)
+	char maCB[16] = ""; //CB+NGAY+THANG (khoi hanh)
 	THOIGIAN_KH khoiHanh;
-	char sanBayDen[15];
+	char sanBayDen[15] = "";
 	TrangThaiCB trangThai;
-	char soHieuMB[16];
+	char soHieuMB[16] = "";
 	string* danhSachVe;//khoi tao mang dong chua Ve, khi can biet ve da mua hay chua thi nhay coc toi - tiet kiem bo nho
 	int slVe; //SoLuongVe = SoCho
 };

@@ -132,6 +132,9 @@ void xoaKhoangTrang(char* s)
 			i--;
 		}
 	}
+	for (int i = 0; s[i] != '\0'; i++)
+		if (s[i] >= 'a' && s[i] <= 'z')
+			s[i] = s[i] - 32;
 }
 void xoaKhoangTrangDu(char* s)
 {
@@ -145,17 +148,16 @@ void xoaKhoangTrangDu(char* s)
 		Xoa(s, 0);
 	if (s[strlen(s) - 1] == ' ')
 		Xoa(s, strlen(s) - 1);
+	for (int i = 0; s[i] != '\0'; i++)
+		if (s[i] >= 'a' && s[i] <= 'z')
+			s[i] = s[i] - 32;
 }
 //=======  chuyen thanh chua in=======
 void chuInHoa(char* s)
 {
 	for (int i = 0; s[i] != '\0'; i++)
-	{
 		if (s[i] >= 'a' && s[i] <= 'z')
-		{
 			s[i] = s[i] - 32;
-		}
-	}
 }
 //=======  Xoa khoang trang thua vs in hoa toan bo chu cai =======
 void chuanHoaString(string& s)

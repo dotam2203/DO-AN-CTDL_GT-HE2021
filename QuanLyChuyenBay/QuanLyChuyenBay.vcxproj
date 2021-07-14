@@ -152,6 +152,7 @@
     <ClInclude Include="HanhKhach.h" />
     <ClInclude Include="KhaiBao.h" />
     <ClInclude Include="MyLib.h" />
+    <ClInclude Include="VE.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

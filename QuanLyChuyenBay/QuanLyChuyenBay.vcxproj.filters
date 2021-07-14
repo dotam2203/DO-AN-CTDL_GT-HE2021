@@ -46,5 +46,8 @@
     <ClInclude Include="HanhKhach.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="VE.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

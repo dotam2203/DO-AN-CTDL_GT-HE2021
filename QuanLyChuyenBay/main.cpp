@@ -11,7 +11,7 @@ int main()
     Khung();
     _getch();
     //system("pause");
-
+    //puts(chuoi);//in chuoi
     return 0;
 }
 
