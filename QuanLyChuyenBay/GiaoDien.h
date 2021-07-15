@@ -20,7 +20,7 @@ void HighLight()//chu trang, nhay hong
 
 void Console()//khoi tao trang thai ban dau
 {
-	resizeConsole(1600, 800);//tuong duong khung 210x105
+	resizeConsole(1800, 900);//tuong duong khung 210x105
 }
 
 void TieuDe()

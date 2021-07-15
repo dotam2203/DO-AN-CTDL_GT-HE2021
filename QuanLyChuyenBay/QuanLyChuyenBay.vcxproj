@@ -148,13 +148,17 @@
     <Text Include="dsVE.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ChuyenBay.h" />
     <ClInclude Include="DocGhiFile.h" />
+    <ClInclude Include="DocGhiFileSang.h" />
     <ClInclude Include="GiaoDien.h" />
     <ClInclude Include="HanhKhach.h" />
     <ClInclude Include="KhaiBao.h" />
+    <ClInclude Include="MayBay.h" />
     <ClInclude Include="MyLib.h" />
     <ClInclude Include="VE.h" />
     <ClInclude Include="XuLyChuoi.h" />
+    <ClInclude Include="XuLyChuoiSang.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
