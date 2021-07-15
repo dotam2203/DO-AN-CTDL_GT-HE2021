@@ -42,8 +42,8 @@ void menu()
 	gotoXY(x1 + 10, y2 + 6); cout << "F4    : SUA";
 	
 	gotoXY(x1 + 40, y2 + 4);  cout << "F2 : LUU";
-	gotoXY(x1 + 40, y2 + 5);  cout << "F4 : SUA";
-	gotoXY(x1 + 40, y2 + 6);  cout << "ESC: THOAT";
+//	gotoXY(x1 + 40, y2 + 5);  cout << "F4 : SUA";
+	gotoXY(x1 + 40, y2 + 5);  cout << "ESC: THOAT";
 
 	gotoXY(x1 + 25, y2 + 8); SetColor(29); cout << "THONG BAO";
 
@@ -68,5 +68,8 @@ void Khung()
 	SetColor(11); lineW(x1, y2-1, 210);
 	menu();
 }
+
+/*Quan ly may bay*/
+
 
 

@@ -2,20 +2,49 @@
 #include"KhaiBao.h"
 
 /*======================= Quan ly may bay - Mang con tro ======================*/
-struct MayBay {
-	char soHieuMB[16] = "";//ten viet tat loai may bay+stt (001 -> 300)
-	char loaiMB[41] = "";
-	int soCho;
 
-	//them chi so
-	int soLuotBay = 0; //dem so luot da thuc hien chuyen bay cua may bay
-	bool active = true; //cho phep mo chuyen bay
-};
-typedef struct MayBay MAYBAY;
 
-struct ds_Maybay {
-	MAYBAY* dsMB[MBMAX];
-	int slMB = 0; //dem so luong may bay
-};
-typedef struct ds_Maybay DS_MAYBAY;
+DS_MAYBAY planeAddArray;
 
+// Tao may bay moi
+MAYBAY PlaneCreate(char* id, char* kind, int seat) {
+	MAYBAY tmp;
+	strcpy(tmp.soHieuMB, id);
+	strcpy(tmp.loaiMB, kind);
+	tmp.seat = seat
+	return tmp;
+}
+// Them may bay vao  danh sach may bay
+void PlaneAdd(MAYBAY plane) {
+	planeAddArray.dsMB[planeAddArray.slMB] = new MAYBAY;
+	*planeAddArray.dsMB[planeAddArray.slMB] = plane;
+	planeAddArray.slMB++;
+}
+// Xoa may bay tai vi tri trong ds may bay
+void PlaneRemoveByIndex(int index) {
+	delete planeAddArray.dsMB[index];
+	for (int i = index; i < planeAddArray.slMB - 1; i++) {
+		planeAddArray.dsMB[i] = planeAddArray.dsMB[i + 1];
+	}
+	planeAddArray.slMB--;
+}
+// Sua may bay tai vi tri trong ds may bay
+void PlaneEditByIndex(int index, char* kind) {
+	strcpy(planeAddArray.dsMB[index]->loaiMB, kind);
+}
+// Xoa danh sach may bay
+void ClearAllPlaneList() {
+	for (int i = 0; i < planeAddArray.slMB; i++) {
+		delete planeAddArray.list[i];
+		planeAddArray.slMB--;
+	}
+}
+// tim may bay theo ID 
+Planes* FindPlaneByID(char* id) {
+	for (int i = 0; i < planeAddArray.slMB; i++) {
+		if (strcmp(planeAddArray.dsMB[i]->planeID, id) == 0) {
+			return planeAddArray.dsMB[i];
+		}
+	}
+	return NULL;
+}
