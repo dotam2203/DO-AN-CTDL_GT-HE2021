@@ -55,5 +55,8 @@
     <ClInclude Include="XuLyChuoi.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="MayBay.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
