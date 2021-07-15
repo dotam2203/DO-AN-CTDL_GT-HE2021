@@ -49,5 +49,11 @@
     <ClInclude Include="VE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="DocGhiFile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="XuLyChuoi.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

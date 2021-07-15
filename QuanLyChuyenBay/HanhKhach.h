@@ -19,19 +19,16 @@ struct node_HanhKhach {
 typedef struct node_HanhKhach *PTR_HANHKHACH;
 //PTR_HANHKHACH tree = NULL;
 
-//void khoitaoTree(PTR_HANHKHACH& root)
-//{
-//	root = NULL;
-//}
+void khoitaoTree(PTR_HANHKHACH& root)
+{
+	root = NULL;
+}
 
 node_HanhKhach* khoitaoNodeHanhKhach()
 {
 	node_HanhKhach* p = new node_HanhKhach;//cap phat vung nho cho 1 hanh khach
 	p->letf = NULL;
 	p->right = NULL;
-
-	p->slHK = 0;
-
 	return p;
 }
 
@@ -64,7 +61,7 @@ void themHanhKhachMoi(PTR_HANHKHACH &list, node_HanhKhach *ptr)//moi lan them 1 
 		else if (strcmp(list->info.CMND, ptr->info.CMND) == 0)
 			themHanhKhachMoi(list, ptr);
 	}
-
 }
+
 
 
