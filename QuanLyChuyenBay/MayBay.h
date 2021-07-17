@@ -11,7 +11,7 @@ MAYBAY PlaneCreate(char* id, char* kind, int seat) {
 	MAYBAY tmp;
 	strcpy(tmp.soHieuMB, id);
 	strcpy(tmp.loaiMB, kind);
-	tmp.seat = seat
+	tmp.seat = seat;
 	return tmp;
 }
 // Them may bay vao  danh sach may bay

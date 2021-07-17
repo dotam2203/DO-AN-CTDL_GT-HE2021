@@ -2,7 +2,7 @@
 #include <iostream> // tranh dung do thu vien khi goi chong file len nhau
 #include <stdio.h>
 #include <stdlib.h>
-#include <string>
+#include <string.h>
 #include <conio.h>
 #include <fstream>
 #include <cmath>
@@ -94,7 +94,7 @@ int getKey()
 //======= Tra ve ma phim nguoi dung bam =========
 int inputKey()
 {
-	if (_kbhit()) //true
+	if (_kbhit()) //true, lenh bat phim
 	{
 		int key = _getch();
 
@@ -146,7 +146,7 @@ void chuanHoaString(string& s)
 }
 
 
-void textcolor(int x)
+void TextColor(int x)
 {
 	HANDLE mau;
 	mau = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -170,38 +170,3 @@ void lineH(int x, int y, int h)//nhap vao toa do diem dau,cao
 	}
 }
 
-void  VeHCN(int x, int y, int w, int h, int mauSet)
-{
-	SetColor(mauSet);
-	for (int i = x; i <= w + x; i++)
-	{
-		gotoXY(i, y);
-		if (i == x)
-			cout << (char)218;
-		else if (i == w + x)
-			cout << (char)191;
-		else
-			cout << (char)196;
-	}
-	for (int i = x; i <= w + x; i++)
-	{
-		gotoXY(i, h + y);
-		if (i == x)
-			cout << (char)192;
-		else if (i == w + x)
-			cout << (char)217;
-		else
-			cout << char(196);
-	}
-	for (int i = y + 1; i < h + y; i++)
-	{
-		gotoXY(x, i);
-		cout << (char)179;
-	}
-	for (int i = y + 1; i < h + y; i++)
-	{
-		gotoXY(w + x, i);
-		cout << (char)179;
-	}
-	SetColor(7);
-}

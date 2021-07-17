@@ -9,6 +9,7 @@ int main()
     Console();
     Background();
     Khung();
+    
     _getch();
     //system("pause");
     //puts(chuoi);//in chuoi
