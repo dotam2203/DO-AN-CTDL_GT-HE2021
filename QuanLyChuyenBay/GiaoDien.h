@@ -45,7 +45,7 @@ void Begin()
 }
 void HLtext()
 {
-	SetColor(DarkRed);
+	SetColor(Pink);
 	SetbgColor(Black);
 }
 void Highlight(int x, int y, int w, int h, int mauHL)//chu do, nhay trang
