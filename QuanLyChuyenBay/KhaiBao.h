@@ -4,95 +4,70 @@
 //using namespace std;
 
  /*======================= Quan ly may bay - Mang con tro ======================*/
-struct MayBay {
-	char soHieuMB[16] = "";//ten viet tat loai may bay+stt (001 -> 300)
-	char loaiMB[41] = "";
-	int soCho;
-
-	//them chi so
-	int soLuotBay = 0; //dem so luot da thuc hien chuyen bay cua may bay
-	bool active = true; //cho phep mo chuyen bay
+struct may_bay
+{
+	char sohieu[16];
+	char loaimaybay[41];
+	int socho;
 };
-typedef struct MayBay MAYBAY;
-
-struct ds_Maybay {
-	MAYBAY* dsMB[MBMAX];
-	int slMB = 0; //dem so luong may bay
+typedef struct may_bay MAY_BAY;
+struct ds_maybay
+{
+	MAY_BAY* dsmaybay[MBMAX];
+	int sl = 0;
 };
-typedef struct ds_Maybay DS_MAYBAY;
-
+typedef struct ds_maybay DS_MAYBAY;
 
 /*======================= Quan ly ve may bay - Danh sach tuyen tinh cap phat dong ======================*/
-struct Ve {
-	int maVe; //tang dan theo so cho cua may bay
-	char CMND[13] = "";//CMND:10 so - CCCD:12 so
-};
-typedef struct Ve VeMB;
-
-enum TrangThaiVe
+struct ve
 {
-	daDat,
-	daHuy
+	int n;//so luong ve =  so cho
+	string* cmnd;
+	int sl_con = 0;
+	int sl_da_ban = 0;
 };
-struct ds_Ve {
-	VeMB* sttVe; //so luong ve phu thuoc so luong cho cua may bay, 1 mang dong co con tro chua thong tin ve
-	int soVeDaBan = 0; //so cho da dat -dua vao mang
-	TrangThaiVe trangThaiVe;//dat ve - huy ve
-	bool huyVe = true;//cho phep hanh khach huy ve
-	int veMax; //gioi han ve ma 1 nguoi duoc dat
-};
-typedef struct ds_Ve DS_VeMB;
-
+typedef struct ve VE;
 
 /*======================= Quan ly hanh khach - Cay nhi phan tim kiem ======================*/
 struct HanhKhach {
-	char CMND[13] =""; //check co so 0 o first
-	char ho[50] = "";
-	char ten[10] = "";
-	char phai[4] = "";
+	string cmnd; //default cmnd = 12
+	char ho[50];
+	char ten[10];
+	char phai[4];
+	HanhKhach* left;
+	HanhKhach* right;
 };
-typedef struct HanhKhach HANHKHACH;
+typedef struct HanhKhach* TREE;
 
 struct node_HanhKhach {
-	HANHKHACH info;
-	node_HanhKhach* letf = NULL;
-	node_HanhKhach* right = NULL;
+	TREE tree = NULL;
 	int slHK = 0;
 };
-typedef struct node_HanhKhach* PTR_HANHKHACH;
+typedef struct node_HanhKhach DS_HANHKHACH;
 
 
 /*======================= Quan ly chuyen bay - Danh sach lien ket don ======================*/
-struct ThoiGianKH {
-	int gio; // 09:00 20/07/2021
-	int phut;
+struct chuyenbay
+{
+	char sohieu[16];
+	char sanbay[100];
+	int cb;
+	char machuyenbay[15];
 	int ngay;
+	int gio;
+	int phut;
 	int thang;
 	int nam;
+	int trangthai;
+	VE ds_ve;
 };
-typedef struct ThoiGianKH THOIGIAN_KH;
 
-enum TrangThaiCB
+typedef struct chuyenbay chuyen_bay;
+struct ds_chuyen_bay
 {
-	huyChuyen,
-	conVe,
-	hetVe,
-	hoanTat
+	chuyen_bay cb;
+	struct ds_chuyen_bay* next;
+	int sl = 0;
 };
-struct ChuyenBay {
-	char maCB[16] = ""; //CB+NGAY+THANG (khoi hanh)
-	THOIGIAN_KH khoiHanh;
-	char sanBayDen[15] = "";
-	TrangThaiCB trangThai;
-	char soHieuMB[16] = "";
-	string* danhSachVe;//khoi tao mang dong chua Ve, khi can biet ve da mua hay chua thi nhay coc toi - tiet kiem bo nho
-	int slVe; //SoLuongVe = SoCho
-};
-typedef struct ChuyenBay CHUYENBAY;
+typedef struct ds_chuyen_bay* DS_CHUYEN_BAY;
 
-struct node_ChuyenBay {
-	CHUYENBAY info;
-	node_ChuyenBay* next;
-	int slCB = 0;
-};
-typedef struct node_ChuyenBay* PTR_CHUYENBAY;

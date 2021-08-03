@@ -2,18 +2,23 @@
 #include "GiaoDien.h"
 #include "KhaiBao.h"
 #include "MyLib.h"
+#include "DocGhiFile.h";
 
 using namespace std;
 int main()
 {
-    Console();
-    Background();
-    Khung();
-    
+    while (true) {
+        Console();
+        Background();
+        Khung();
+    }
+    box(x3, y2, 100, y2+26, White);
+    box(x4, y2, 25, y2 + 26, White);
     _getch();
-    //system("pause");
-    //puts(chuoi);//in chuoi
+    system("pause");
     return 0;
 }
+
+
 
 

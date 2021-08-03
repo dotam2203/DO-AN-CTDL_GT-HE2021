@@ -148,6 +148,7 @@
     <Text Include="dsVE.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Box.h" />
     <ClInclude Include="ChuyenBay.h" />
     <ClInclude Include="DocGhiFile.h" />
     <ClInclude Include="DocGhiFileSang.h" />
