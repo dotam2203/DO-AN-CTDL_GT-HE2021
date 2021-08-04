@@ -8,6 +8,8 @@
 #include "XuLyChuoiSang.h"
 #include <exception>
 
+using namespace std;
+
 #define xMove 60
 #define yMove 8
 //void delete_plane(DS_MAYBAY& mb, DS_CHUYEN_BAY& First);
@@ -23,6 +25,7 @@ void ButtonESC1(int color);
 void search_edit(DS_MAYBAY& mb, DS_CHUYEN_BAY& First);
 void clearSearch();
 void clearThongBao();
+void thongBaoString(string input);
 /*======================= Quan ly may bay - Mang con tro ======================*/
 
 
@@ -139,6 +142,11 @@ int same_test(DS_MAYBAY& mb, int a)
 
 int insert_plane(DS_MAYBAY& mb)
 {
+
+	clearSearch();
+	clearThongBao();
+
+
 	int n = 9, x1 = 50, x2 = 0, y2 = 8, w1 = 60, h1 = 2;
 	int pointX, pointY1, pointY2, pointY3;
 	pointX = x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2 + 2;
@@ -202,10 +210,10 @@ int insert_plane(DS_MAYBAY& mb)
 		}
 		if (same_test(mb, a) == 1)
 		{
-			gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1);
-			cout << "[ SO HIEU DA CO TRONG DANH SACH]";
-
-			gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1); cout << "                                      ";
+			//	gotoXY(x2 + 65 - 1 + 10 - 5+25, y2 + 5 - 1 - 4 + 1);
+			//	cout << "[ SO HIEU DA CO TRONG DANH SACH]";
+			thongBaoString("[ SO HIEU DA CO TRONG DANH SACH]");
+			//	gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1); cout << "                                      ";
 			gotoXY(pointX, pointY2); cout << "                    ";
 
 			//gotoXY(50, 9);cout << "           ";
@@ -218,6 +226,7 @@ int insert_plane(DS_MAYBAY& mb)
 
 		gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1);
 		cout << "[ SO CHO >= 20 ]";
+
 		for (int j = 0; j <= 15; j++)
 		{
 			gotoXY(pointX + j, pointY3); cout << " ";
@@ -238,13 +247,12 @@ int insert_plane(DS_MAYBAY& mb)
 		mb.dsmaybay[a]->socho = atoi(tmp);
 		if (mb.dsmaybay[a]->socho < 20)
 		{
-
+			string socho;
 			gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1);
 			cout << "                                                ";
-			gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1);
-			cout << "[ SO CHO " << mb.dsmaybay[a]->socho << " < 20 ]";
+			socho = to_string(mb.dsmaybay[a]->socho);
+			thongBaoString("[ SO CHO " + socho + " < 20 ]");
 			gotoXY(pointX, pointY3);
-
 
 			//_getch();
 
@@ -337,6 +345,7 @@ void deleteCenter() {
 
 
 }
+
 
 void deleteBoxAdd1() {
 
@@ -436,7 +445,7 @@ back:
 	int a[300];
 	//readfile_cb(First);
 
-	gotoXY(101, 35); cout << "[Trang]: " << trang + 1 << "/" << tong;
+	//gotoXY(101, 35); cout << "[Trang]: " << trang + 1 << "/" << tong;
 
 	//connhay_on1();
 	do
@@ -629,6 +638,15 @@ void ButtonXoa1(int color)
 	gotoXY(x, 15); SetbgColor(color); 	            cout << "        ";
 	SetbgColor(0); SetColor(15);
 }
+void ButtonCancel1(int color)
+{
+	int x = 8 + 8 + 8 / 2;
+	gotoXY(x, 12); SetbgColor(color); 				cout << "        ";
+	gotoXY(x, 13); SetbgColor(color); SetColor(12); cout << " DELETE ";
+	gotoXY(x, 14); SetbgColor(color); SetColor(0); cout << " CANCEL ";
+	gotoXY(x, 15); SetbgColor(color); 	            cout << "        ";
+	SetbgColor(0); SetColor(15);
+}
 void ButtonSua1(int color)
 {
 	int x = (8 + 8 + 8 / 2) + 8 + 8 / 2;
@@ -694,6 +712,7 @@ int yes_no(DS_MAYBAY& mb)
 	switch (k)
 	{
 	case 18:
+		thongBaoString("BAN DA XOA THANH CONG !!!");
 		writefile_plane(mb);
 		deleteList1();
 		return 0;
@@ -707,6 +726,7 @@ int yes_no(DS_MAYBAY& mb)
 }
 int yes_noSave(DS_MAYBAY& mb)
 {
+	deleteBoxAdd1();
 	gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3, 15); cout << "BAN CO CHAC LA LUU KHONG";
 	box1(0 + 65 - 1 + 60 + 30 + 15 + 3, 8 + 5 - 1, 40 - 3, 18 + 3, 19);
 	gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3 + 5, 18); cout << "YES";
@@ -753,6 +773,8 @@ int yes_noSave(DS_MAYBAY& mb)
 	case 18:
 		writefile_plane(mb);
 		deleteList1();
+		deleteBoxAdd1();
+
 		return 0;
 	case 19:
 		deleteBoxAdd1();
@@ -765,10 +787,14 @@ int yes_noSave(DS_MAYBAY& mb)
 
 void delete_plane(DS_MAYBAY& mb, DS_CHUYEN_BAY& First)
 {
+	clearSearch();
+	clearThongBao();
 	int movX = 60;
 	int movY = 8;
 	char c;
 back:
+	clearSearch();
+	clearThongBao();
 	deleteList1();
 	TableList1();
 	result_plane(mb);
@@ -794,6 +820,7 @@ back:
 	//connhay_on1();
 	do
 	{
+		bool check = false;
 		c = _getch();
 		if (i <= 14 && c >= 48 && c <= 122 || c == 32)
 		{
@@ -971,6 +998,7 @@ kay:
 				}
 				j++;
 			}
+			TableList1();
 			for (int i = 0 + trang * 18; i < mb.sl - 1 && i <= 18 + trang * 18; i++)
 			{
 				gotoXY(movX + 6, movY + k + 7);
@@ -1041,6 +1069,7 @@ kay:
 				}
 				j++;
 			}
+			TableList1();
 			for (int i = 0 + trang * 18; i < mb.sl - 1 && i <= 18 + trang * 18; i++)
 			{
 				gotoXY(movX + 6, movY + k + 7);
@@ -1074,6 +1103,7 @@ kay:
 	v = First;
 	while (v != NULL)
 	{
+
 		if (_strcmpi(v->cb.sohieu, tmp) == 0)
 		{
 
@@ -1135,12 +1165,16 @@ void deleteThongBao1() {
 
 void search_edit(DS_MAYBAY& mb, DS_CHUYEN_BAY& First)
 {
+	clearSearch();
+	clearThongBao();
 	int  movXX = 180 - 25 - 5 - 2;
 	int movXY = 16 - 10;
 	int movX = 60;
 	int movY = 8;
 	char c;
 back:
+	clearSearch();
+	clearThongBao();
 	deleteList1();
 	TableList1();
 	result_plane(mb);
@@ -1343,6 +1377,7 @@ kay:
 				}
 				j++;
 			}
+			TableList1();
 			for (int i = 0 + trang * 18; i < mb.sl - 1 && i <= 18 + trang * 18; i++)
 			{
 				gotoXY(movX + 6, movY + k + 7);
@@ -1356,6 +1391,7 @@ kay:
 				k++;
 			}
 		}
+		TableList1();
 		if (c == 72)
 		{
 			if (f > 7)
@@ -1427,6 +1463,7 @@ kay:
 			}
 			goto kay;
 		}
+		TableList1();
 		cout << "  ";
 		gotoXY(movX + 1, movY + f);
 		cout << ">";
@@ -1510,8 +1547,11 @@ main:
 		}
 		gotoXY(53 + movXY, 8 + movXY);
 		do {
+			gotoXY(47 + j + movXX - 8 - 1, 10 + movXY); connhay_on1();
+
 			tmp = block_char(41, 47 + j + movXX - 8 - 1, 10 + movXY);
 		} while (tmp[0] == '\0');
+
 		if (tmp[0] == '.')
 		{
 			//system("cls");
@@ -1522,6 +1562,7 @@ main:
 			mb.dsmaybay[a[p]]->loaimaybay[i] = tmp[i];
 			i++;
 			mb.dsmaybay[a[p]]->loaimaybay[i] = '\0';
+			connhay_off1();
 		}
 		break;
 	}
@@ -1541,6 +1582,7 @@ main:
 			}
 			gotoXY(53 + movXX, 9 + movXY);
 			do {
+				gotoXY(43 + j + movXX - 4, 11 + movXY); connhay_on1();
 				cmp = block_and_char(14, 43 + j + movXX - 4, 11 + movXY);
 			} while (cmp[0] == '\0');
 			j = 0;
@@ -1557,6 +1599,10 @@ main:
 			}
 			if (same_test(mb, a[p]) == 1)
 			{
+
+
+				thongBaoString("SO HIEU MAY BAY DA CO TRONG DANH SACH.");
+				connhay_off1();
 				//gotoXY(94, 4);
 				//cout << "nhap lai!";
 				_getch();
@@ -1576,8 +1622,10 @@ main:
 			}
 			v = v->next;
 		}
+		connhay_off1();
 		deleteList1();
 		break;
+
 	}
 	case 18:
 	{
@@ -1590,14 +1638,17 @@ main:
 		{
 			for (int j = 0; j <= 10; j++)
 			{
-				gotoXY(43 + j + movXX - 4, 11 + movXY + 1); cout << " ";
+				gotoXY(43 + j + movXX - 4 - 1, 11 + movXY + 1); cout << " ";
 			}
 			gotoXY(53 + movXX, 10 + movXY);
 			i = 0;
 			do {
-				kmp = block_number(15, 43 + 0 + movXX - 4, 11 + movXY + 1);
+				gotoXY(43 + 0 + movXX - 4 - 1, 11 + movXY + 1); cout << "              ";
+				gotoXY(43 + 0 + movXX - 4 - 1, 11 + movXY + 1); connhay_on1();
+				kmp = block_number(15, 43 + 0 + movXX - 4 - 1, 11 + movXY + 1);
 			} while (kmp[0] == '\0');
 			int j = 0;
+			connhay_off1();
 			if (kmp[0] == '.')
 			{
 				///deleteList1();
@@ -1606,6 +1657,8 @@ main:
 
 			if (atoi(kmp) < 20)
 			{
+				thongBaoString("SO GHE NGOI PHAI > 20");
+
 				//gotoXY(94, 5);
 				//cout << "nhap lai!";
 				_getch();
@@ -1638,9 +1691,10 @@ main:
 
 			writefile_flight(First);
 			//can phai thong bao Luu
+			thongBaoString("SUA MAY BAY THANH CONG");
+
 			_getch();
-			deleteList1();
-			deleteBoxAdd1();
+
 			goto back;
 		}
 		else { goto back; }

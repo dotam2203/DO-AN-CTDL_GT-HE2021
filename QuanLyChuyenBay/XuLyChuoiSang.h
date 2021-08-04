@@ -19,7 +19,8 @@ char* block_char(int a, int x, int y)
 	while (1)
 	{
 		c = _getch();
-		if (i <= a && c >= 48 && c <= 122 || c == 32)
+
+		if (i <= a && ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122)) || c == 32)
 		{
 			gotoXY(x + i, y);
 			b[i] = c;
@@ -103,7 +104,7 @@ char* block_and_char(int a, int x, int y)
 	while (1)
 	{
 		c = _getch();
-		if (i <= a && c >= 48 && c <= 122 || c == 32)
+		if (i <= a && i <= a && c != 75 && c != 77 && c != -32 && c != 72 && c != 80 && ((c >= 48 && c <= 57) || (c >= 65 && c <= 90) || (c >= 97 && c <= 122)) || c == 32 || c == 32)
 		{
 			if (c >= 97 && c <= 122)
 			{

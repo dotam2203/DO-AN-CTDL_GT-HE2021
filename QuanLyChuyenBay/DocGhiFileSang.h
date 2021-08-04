@@ -11,8 +11,7 @@
 #include <stdio.h>
 using namespace std;
 
-DS_CHUYEN_BAY new_nodecb(void);
-void clearlist(DS_CHUYEN_BAY& First);
+
 void LuuFileMayBay(DS_MAYBAY& listMB, ofstream& fileout)
 {
 	fileout << listMB.sl << endl;
@@ -62,7 +61,7 @@ void writefile_flight(DS_CHUYEN_BAY& first)
 	ofstream fi;
 	//p = first;
 	if (first == NULL)return;
-	fi.open("ds_chuyenbay.txt", ios_base::out);
+	fi.open("chuyenbay.txt", ios_base::out);
 	for (DS_CHUYEN_BAY p = first; p != NULL; p = p->next)
 	{
 		fi << p->cb.machuyenbay << endl;
@@ -118,7 +117,7 @@ void readfile_cb(DS_CHUYEN_BAY& First)
 	chuyenbay cb;
 	ifstream fi;
 	char a[11];
-	fi.open("ds_chuyenbay.txt");
+	fi.open("chuyenbay.txt");
 	First = NULL;
 	clearlist(First);
 	int i = 0;

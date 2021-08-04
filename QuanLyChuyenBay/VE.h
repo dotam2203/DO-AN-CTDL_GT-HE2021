@@ -2,7 +2,6 @@
 #include "KhaiBao.h"
 #include "MyLib.h"
 #include "DocGhiFile.h"
-#include "XuLyDeTam.h"
 #include "ChuyenBay.h"
 #include "MayBay.h"
 

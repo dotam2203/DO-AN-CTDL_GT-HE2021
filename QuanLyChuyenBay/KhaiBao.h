@@ -71,3 +71,36 @@ struct ds_chuyen_bay
 };
 typedef struct ds_chuyen_bay* DS_CHUYEN_BAY;
 
+struct ThoiGianKH {
+	int gio; // 09:00 20/07/2021
+	int phut;
+	int ngay;
+	int thang;
+	int nam;
+};
+typedef struct ThoiGianKH THOIGIAN_KH;
+
+enum TrangThaiCB
+{
+	huyChuyen,
+	conVe,
+	hetVe,
+	hoanTat
+};
+struct ChuyenBay {
+	char maCB[16] = ""; //CB+NGAY+THANG (khoi hanh)
+	THOIGIAN_KH khoiHanh;
+	char sanBayDen[15] = "";
+	TrangThaiCB trangThai;
+	char soHieuMB[16] = "";
+	string* danhSachVe;//khoi tao mang dong chua Ve, khi can biet ve da mua hay chua thi nhay coc toi - tiet kiem bo nho
+	int slVe; //SoLuongVe = SoCho
+};
+typedef struct ChuyenBay CHUYENBAY;
+
+struct node_ChuyenBay {
+	CHUYENBAY info;
+	node_ChuyenBay* next;
+	int slCB = 0;
+};
+typedef struct node_ChuyenBay* PTR_CHUYENBAY;

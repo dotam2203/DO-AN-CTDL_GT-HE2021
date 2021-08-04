@@ -10,7 +10,12 @@
 #include"MayBay.h"
 #include"GiaoDien.h"
 #define MAX 100
-DS_CHUYEN_BAY new_nodecb(void);
+void connhay_on();
+void deleteBoxEDITCB();
+void clearPoint();
+void thongBaoString(string input);
+void connhay_on1();
+void ButtonCancel1(int color);
 void deleteBoxAdd();
 void cancel_flight(DS_CHUYEN_BAY& First, DS_MAYBAY& mb, chuyenbay* ds_cb[]);
 void deleteCenter();
@@ -26,7 +31,6 @@ void insert_cb(DS_CHUYEN_BAY& First, chuyen_bay& x);
 void readfile_plane(DS_MAYBAY& mb);
 void deleteBoxAdd1();
 void clearSearch();
-void clearlist(DS_CHUYEN_BAY& First);
 void result_plane(DS_MAYBAY& mb);
 void ButtonThem1(int color);
 void ButtonXoa1(int color);
@@ -252,6 +256,7 @@ void xem_cb(DS_CHUYEN_BAY& First, DS_MAYBAY& mb, chuyen_bay* ds_cb[])
 {
 	int movX = 60, movY = 8, movSX = 105, movSY = -2;
 back:
+	clearPoint();
 	TableListCB();
 	char c;
 	char* b = new char[14];
@@ -278,13 +283,14 @@ back:
 		tong = (dem(First)) / 18 + 1;
 	}
 
-	gotoXY(101 + movX, 28 + movY); cout << "Trang: " << trang + 1 << "/" << tong;
+	//gotoXY(101 + movX, 28 + movY); cout << "Trang: " << trang + 1 << "/" << tong;
 	//gotoXY(15 + movX, 3 + movY); cout << "Search_CB:";
 	connhay_on2();
 	do
 	{
 		ButtonThem1(255);
-		ButtonXoa1(255);
+		ButtonCancel1(255);
+
 		ButtonSua1(255);
 		ButtonESC1(255);
 		SetbgColor(0);
@@ -303,12 +309,13 @@ back:
 			goto back;
 		}
 		if (c == 83) {
-			ButtonXoa1(1);
+			ButtonCancel1(1);
 			SetbgColor(0);
 			deleteListCB();
 			//system("cls");
 			cancel_flight(First, mb, ds_cb);
 			//delete_plane(mb, First);
+			deleteBoxAdd1();
 			clearSearch();
 			clearThongBao();
 			goto back;
@@ -319,6 +326,7 @@ back:
 			deleteListCB();
 			edit_fl(First, mb, ds_cb);
 			//search_edit(mb, First);
+			deleteBoxAdd1();
 			clearSearch();
 			clearThongBao();
 			goto back;
@@ -545,268 +553,7 @@ back:
 	int p = 0;
 
 key://============================================================================================================//
-	f = 7;
 
-	gotoXY(0 + movX, 7 + movY); cout << "==>";
-	do
-	{
-		gotoXY(101 + movX, 28); cout << "Trang: " << trang + 1 << "/" << tong;
-		c = _getch();
-		if (f <= 7 && tong > 1 && trang > 0 && c == 72)
-		{
-			gotoXY(0 + movX, 7 + movY);
-			cout << "   ";
-			f = 25;
-			trang--;
-			int k = 0;
-			int j = 0;
-			while (j <= 18)
-			{
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(5 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 14; i++)
-				{
-					gotoXY(10 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 13; i++)
-				{
-					gotoXY(25 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 8; i++)
-				{
-					gotoXY(39 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 20; i++)
-				{
-					gotoXY(48 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(69 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(75 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(81 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(87 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(92 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(97 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(103 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 12; i++)
-				{
-					gotoXY(104 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				j++;
-			}
-			k = 7 + movY;
-			for (int i = trang * 18 + 0; i < dem(First) && i <= 18 + trang * 18; i++)
-			{
-				gotoXY(5 + movX, k);
-				cout << i;
-				for (int j = 0; j < mb.sl - 1; j++)
-				{
-					if (_strcmpi(ds_cb[i]->sohieu, mb.dsmaybay[j]->sohieu) == 0)
-					{
-						gotoXY(10 + movX, k);
-						cout << mb.dsmaybay[j]->loaimaybay;
-					}
-				}
-				//cout << mb.dsmaybay[ds_cb[i]->loai]->loaimaybay << endl;
-				gotoXY(25 + movX, k);
-				cout << ds_cb[i]->machuyenbay;
-				gotoXY(40 + movX, k);
-				cout << ds_cb[i]->sohieu;
-				gotoXY(55 + movX, k);
-				cout << ds_cb[i]->sanbay;
-				gotoXY(70 + movX, k);
-				cout << ds_cb[i]->ngay;
-				gotoXY(77 + movX, k);
-				cout << ds_cb[i]->thang;
-				gotoXY(81 + movX, k);
-				cout << ds_cb[i]->nam;
-				gotoXY(88 + movX, k);
-				cout << ds_cb[i]->gio;
-				gotoXY(93 + movX, k);
-				cout << ds_cb[i]->phut;
-				gotoXY(98 + movX, k);
-				cout << ds_cb[i]->ds_ve.n;
-				trang_thai(ds_cb[i]->trangthai, 104 + movX, k);
-				k++;
-			}
-		}
-		if (c == 72)
-		{
-			if (f > 7)
-			{
-				f = f - 1;
-				p--;
-			}
-		}
-		else if (c == 80)
-		{
-			if (f < u + 6 && p <= u - 2)
-			{
-				f += 1;
-				p++;
-			}
-
-		}
-		if (f != 7)
-		{
-			gotoXY(0 + movX, f - 1 + movY);
-			printf("   ");
-		}
-		if (f != 7 + u)
-		{
-			gotoXY(0 + movX, f + 1 + movY);
-			printf("  ");
-		}
-		if (f == 25 && tong > 1 && trang + 1 < tong)
-		{
-			trang++;
-			int k = 0;
-			int j = 0;
-			while (j <= 18)
-			{
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(5 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 14; i++)
-				{
-					gotoXY(10 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 13; i++)
-				{
-					gotoXY(25 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 8; i++)
-				{
-					gotoXY(39 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 20; i++)
-				{
-					gotoXY(48 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(69 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(75 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(81 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(87 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(92 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 4; i++)
-				{
-					gotoXY(97 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 5; i++)
-				{
-					gotoXY(103 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				for (int i = 0; i < 12; i++)
-				{
-					gotoXY(104 + i + movX, j + 7 + movY);
-					cout << " ";
-				}
-				j++;
-			}
-			k = 7 + movY;
-			for (int i = trang * 18 + 0; i < dem(First) && i <= 18 + trang * 18; i++)
-			{
-				gotoXY(5 + movX, k);
-				cout << i;
-				for (int j = 0; j < mb.sl - 1; j++)
-				{
-					if (_strcmpi(ds_cb[i]->sohieu, mb.dsmaybay[j]->sohieu) == 0)
-					{
-						gotoXY(10 + movX, k);
-						cout << mb.dsmaybay[j]->loaimaybay;
-					}
-				}
-				//cout << mb.dsmaybay[ds_cb[i]->loai]->loaimaybay << endl;
-				gotoXY(25 + movX, k);
-				cout << ds_cb[i]->machuyenbay;
-				gotoXY(40 + movX, k);
-				cout << ds_cb[i]->sohieu;
-				gotoXY(55 + movX, k);
-				cout << ds_cb[i]->sanbay;
-				gotoXY(70 + movX, k);
-				cout << ds_cb[i]->ngay;
-				gotoXY(77 + movX, k);
-				cout << ds_cb[i]->thang;
-				gotoXY(81 + movX, k);
-				cout << ds_cb[i]->nam;
-				gotoXY(88 + movX, k);
-				cout << ds_cb[i]->gio;
-				gotoXY(93 + movX, k);
-				cout << ds_cb[i]->phut;
-				gotoXY(98 + movX, k);
-				cout << ds_cb[i]->ds_ve.n;
-				trang_thai(ds_cb[i]->trangthai, 104 + movX, k);
-				k++;
-			}
-			goto key;
-		}
-		cout << "  ";
-		gotoXY(0 + movX, f + movY);
-		cout << "==>";
-	} while (c != 27);
 	//system("cls");
 	deleteCenter();
 }
@@ -815,6 +562,9 @@ void edit_fl(DS_CHUYEN_BAY& First, DS_MAYBAY& mb, chuyen_bay* ds_cb[])
 
 	int movX = 60, movY = 8, movSX = 105, movSY = -2;
 back:
+	deleteBoxEDITCB();
+	clearPoint();
+	boxAddCB();
 	TableListCB();
 	char c;
 	char* b = new char[14];
@@ -1066,6 +816,7 @@ back:
 		}
 		if (c == 27)return;
 	} while (c != 13);
+
 	connhay_off2();
 	if (u == 0)
 	{
@@ -1081,10 +832,10 @@ back:
 key://============================================================================================================//
 	f = 7;
 
-	gotoXY(0 + movX, 7 + movY); cout << "==>";
+	gotoXY(0 + movX + 1, 7 + movY); cout << ">";
 	do
 	{
-		gotoXY(101 + movX, 28); cout << "Trang: " << trang + 1 << "/" << tong;
+		gotoXY(101 + movX, 28 + movY); cout << "Trang: " << trang + 1 << "/" << tong;
 		c = _getch();
 		if (f <= 7 && tong > 1 && trang > 0 && c == 72)
 		{
@@ -1218,13 +969,13 @@ key://==========================================================================
 		}
 		if (f != 7)
 		{
-			gotoXY(0 + movX, f - 1 + movY);
-			printf("   ");
+			gotoXY(0 + movX + 1, f - 1 + movY);
+			printf(" ");
 		}
 		if (f != 7 + u)
 		{
-			gotoXY(0 + movX, f + 1 + movY);
-			printf("  ");
+			gotoXY(0 + movX + 1, f + 1 + movY);
+			printf(" ");
 		}
 		if (f == 25 && tong > 1 && trang + 1 < tong)
 		{
@@ -1338,63 +1089,46 @@ key://==========================================================================
 			goto key;
 		}
 		cout << "  ";
-		gotoXY(0 + movX, f + movY);
-		cout << "==>";
-	} while (c != 13 || ds_cb[a[p]]->trangthai == 3 || ds_cb[a[p]]->trangthai == 0);
+		gotoXY(0 + movX + 1, f + movY);
+		cout << ">";
+	} while (c != 13);
+	if (ds_cb[a[p]]->trangthai == 3) {
+		thongBaoString("CHUYEN BAY DA HOAN TAT, KHONG THE SUA CHUYEN");
+		//khongHuy = true;
+		goto back;
+	}
+	else if (ds_cb[a[p]]->trangthai == 0) {
+		thongBaoString("CHUYEN BAY DA HUY !!!, KHONG THE SUA");
+		//khongHuy = true;
+		goto back;
+	}
 	//system("cls");
 	//deleteCenter();
-	deleteBoxAdd();
+
+	deleteBoxEDITCB();
 	int moX = 145;
 
 	f = 13;
 main:
 
+	boxAddCB();
 
-	//gotoXY(5, 5); cout << "<ESC> THOAT KHONG LUU";
-	for (int i = 0; i < 16; i++)
-	{
-		gotoXY(49 + i + moX, 13);
-		cout << " ";
-	}
+
 	gotoXY(35 + moX, 13); cout << "Ma chuyen bay: " << ds_cb[a[p]]->machuyenbay;
-	for (int i = 0; i < 30; i++)
-	{
-		gotoXY(47 + i + moX, 14);
-		cout << " ";
-	}
 	gotoXY(35 + moX, 14); cout << "San bay den: " << ds_cb[a[p]]->sanbay;
-	for (int i = 0; i < 6; i++)
-	{
-		gotoXY(42 + i + moX, 15);
-		cout << " ";
-	}
+
 	gotoXY(35 + moX, 15); cout << "Ngay: " << ds_cb[a[p]]->ngay;
-	for (int i = 0; i < 6; i++)
-	{
-		gotoXY(42 + i + moX, 16);
-		cout << " ";
-	}
+
 	gotoXY(35 + moX, 16); cout << "Thang: " << ds_cb[a[p]]->thang;
-	for (int i = 0; i < 6; i++)
-	{
-		gotoXY(40 + i + moX, 17);
-		cout << " ";
-	}
+
 	gotoXY(35 + moX, 17); cout << "Nam: " << ds_cb[a[p]]->nam;
-	for (int i = 0; i < 6; i++)
-	{
-		gotoXY(40 + i + moX, 18);
-		cout << " ";
-	}
+
 	gotoXY(35 + moX, 18); cout << "Gio: " << ds_cb[a[p]]->gio;
-	for (int i = 0; i < 6; i++)
-	{
-		gotoXY(40 + i + moX, 19);
-		cout << " ";
-	}
+
 	gotoXY(35 + moX, 19); cout << "Phut: " << ds_cb[a[p]]->phut;
 	gotoXY(35 + moX, 20); cout << "Luu va Thoat";
-	gotoXY(70 + moX, f); cout << " <==";
+	int setX = -38;
+	gotoXY(70 + moX + setX, f); cout << "=>";
 	do
 	{
 		c = _getch();
@@ -1415,38 +1149,40 @@ main:
 		}
 		if (c == 27)
 		{
-			system("cls");
+			//system("cls");
 			goto back;
 		}
 		if (f != 13)
 		{
-			gotoXY(70 + moX, f - 1);
-			printf("    ");
+			gotoXY(70 + moX + setX, f - 1);
+			cout << "  ";
 		}
 		if (f != 20)
 		{
-			gotoXY(70 + moX, f + 1);
-			printf("    ");
+			gotoXY(70 + moX + setX, f + 1);
+			cout << "  ";
 		}
-		cout << "    ";
-		gotoXY(70 + moX, f);
-		cout << " <==";
+		//cout << "  ";
+		gotoXY(70 + moX + setX, f);
+		cout << "=>";
 	} while (c != 13);
 	switch (f)
 	{
 	case 13:
 	{
 	xuat:
-		gotoXY(5 + moX, 5); cout << "<ESC> QUAY LAI       ";
+
 		int j = 0;
 		char* tmp = new char[100];
-		for (int j = 0; j <= 40; j++)
+		for (int j = 0; j <= 20; j++)
 		{
 			gotoXY(49 + j + moX, 13); cout << " ";
 		}
+		boxAddCB();
 		//gotoXY(53, 8);
 		int n = 0;
 		do {
+			gotoXY(50 + moX, 13); connhay_on();
 			tmp = block_and_char(15, 50 + moX, 13);
 		} while (tmp[0] == '\0');
 		if (tmp[0] == '.')
@@ -1464,12 +1200,7 @@ main:
 		{
 			if (_strcmpi(v->cb.machuyenbay, ds_cb[a[p]]->machuyenbay) == 0 && _strcmpi(v->cb.sohieu, ds_cb[a[p]]->sohieu) == 0)
 			{
-				gotoXY(94 + moX, 4); cout << "Nhap lai";
-				_getch();
-				for (int i = 0; i <= 10; i++)
-				{
-					gotoXY(94 + i + moX, 4); cout << " ";
-				}
+				thongBaoString("MA CHUYEN BAY DA CO TRONG DANH SACH!!!");
 				goto xuat;
 			}
 			v = v->next;
@@ -1478,15 +1209,17 @@ main:
 	}
 	case 14:
 	{
-		//gotoXY(5 + moX, 5); cout << "<ESC> QUAY LAI       ";
+
 		int n = 0;
 		int j = 0;
 		char* tmp = new char[100];
-		for (int j = 0; j <= 40; j++)
+		for (int j = 0; j <= 20; j++)
 		{
 			gotoXY(47 + j + moX, 14); cout << " ";
 		}
+		boxAddCB();
 		do {
+			gotoXY(48 + moX, 14); connhay_on();
 			tmp = block_char(100, 48 + moX, 14);
 		} while (tmp[0] == '\0');
 		if (tmp[0] == '.')
@@ -1503,25 +1236,23 @@ main:
 	break;
 	case 15:
 	{
-		//gotoXY(5, 5); cout << "<ESC> QUAY LAI       ";
+
 		char* tmp = new char[100];
 		do
 		{
-			for (int j = 0; j <= 35; j++)
+			for (int j = 0; j <= 20; j++)
 			{
 				gotoXY(40 + j + moX, 15); cout << " ";
 			}
+			boxAddCB();
+			gotoXY(40 + moX, 15); connhay_on();
 			tmp = block_number(1, 40 + moX, 15);
 			if (ds_cb[a[p]]->thang == months && ds_cb[a[p]]->nam == years && atoi(tmp) < days || atoi(tmp) > 31)
 			{
-				gotoXY(94 + moX, 4); cout << "khong hop le";
-				gotoXY(94 + moX, 5); cout << "nhap lai";
-				_getch();
-				for (int i = 0; i <= 15; i++)
-				{
-					gotoXY(94 + i + moX, 4); cout << " ";
-					gotoXY(94 + i + moX, i); cout << " ";
-				}
+				//gotoXY(94 + moX, 4); cout << "khong hop le";
+				thongBaoString("THOI GIAN KHONG HOP LE !!!");
+				//gotoXY(94 + moX, 5); cout << "nhap lai";
+
 			}
 		} while (tmp[0] == '\0' || ds_cb[a[p]]->thang == months && ds_cb[a[p]]->nam == years && atoi(tmp) < days || atoi(tmp) > 31);
 		if (tmp[0] == '.')
@@ -1533,24 +1264,20 @@ main:
 	}
 	case 16:
 	{
-		//gotoXY(5, 5); cout << "<ESC> QUAY LAI       ";
+
 		char* tmp = new char[100];
 		do {
-			for (int j = 0; j <= 40; j++)
+			for (int j = 0; j <= 20; j++)
 			{
 				gotoXY(41 + j + moX, 16); cout << " ";
 			}
+			boxAddCB();
+			gotoXY(41 + moX, 16); connhay_on();
 			tmp = block_number(1, 41 + moX, 16);
 			if (atoi(tmp) < months && ds_cb[a[p]]->nam == years || atoi(tmp) > 12)
 			{
-				gotoXY(94 + moX, 4); cout << "khong hop le";
-				gotoXY(94 + moX, 5); cout << "nhap lai";
-				_getch();
-				for (int i = 0; i <= 15; i++)
-				{
-					gotoXY(94 + i + moX, 4); cout << " ";
-					gotoXY(94 + i + moX, 5); cout << " ";
-				}
+				thongBaoString("THOI GIAN KHONG HOP LE");
+
 			}
 		} while (tmp[0] == '\0' || atoi(tmp) < months && ds_cb[a[p]]->nam == years || atoi(tmp) > 12);
 		if (tmp[0] == '.')
@@ -1562,26 +1289,21 @@ main:
 	}
 	case 17:
 	{
-		gotoXY(5 + moX, 5); cout << "<ESC> QUAY LAI       ";
+
 		char* tmp = new char[100];
 		do {
 
-			for (int j = 0; j <= 50; j++)
+			for (int j = 0; j <= 20; j++)
 			{
 				gotoXY(40 + j + moX, 17); cout << " ";
 			}
+			boxAddCB();
+			gotoXY(40 + moX, 17); connhay_on();
 			tmp = block_number(3, 40 + moX, 17);
 			if (tmp[0] == '.')goto main;
 			if (atoi(tmp) < years && tmp[0] != '\0')
 			{
-				gotoXY(94 + moX, 4); cout << "khong hop le";
-				gotoXY(94 + moX, 5); cout << "nhap lai";
-				_getch();
-				for (int i = 0; i <= 15; i++)
-				{
-					gotoXY(94 + i + moX, 4); cout << " ";
-					gotoXY(94 + i + moX, 5); cout << " ";
-				}
+				thongBaoString("THOI GIAN KHONG HOP LE");
 			}
 		} while (tmp[0] == '\0' || atoi(tmp) < years || atoi(tmp) < 1000);
 		ds_cb[a[p]]->nam = atoi(tmp);
@@ -1591,20 +1313,20 @@ main:
 	{
 	back1:
 		v = First;
-		//otoXY(5, 5); cout << "<ESC> QUAY LAI       ";
+
 		char* tmp = new char[100];
 		do
 		{
-			for (int j = 0; j <= 35; j++)
+			for (int j = 0; j <= 20; j++)
 			{
 				gotoXY(40 + j + moX, 18); cout << " ";
 			}
+			boxAddCB();
+			gotoXY(40 + moX, 18); connhay_on();
 			tmp = block_number(1, 40 + moX, 18);
 			if (days == ds_cb[a[p]]->ngay && months == ds_cb[a[p]]->thang && years == ds_cb[a[p]]->nam && atoi(tmp) - hours < 0 || atoi(tmp)>24)
 			{
-				gotoXY(94, 4); cout << "khong hop le";
-				gotoXY(94, 5); cout << "nhap lai";
-				_getch();
+				thongBaoString("THOI GIAN KHONG HOP LE");
 				for (int i = 0; i <= 15; i++)
 				{
 					gotoXY(94 + i + moX, 4); cout << " ";
@@ -1622,15 +1344,7 @@ main:
 			{
 				if (v->cb.ngay == ds_cb[a[p]]->ngay && v->cb.thang == ds_cb[a[p]]->thang && v->cb.nam == ds_cb[a[p]]->nam && abs(atoi(tmp) - v->cb.gio) < 4)
 				{
-					gotoXY(94 + moX, 4); cout << "Da co chuyen bay";
-					gotoXY(94 + moX, 5); cout << "cach day 4 gio";
-					_getch();
-					for (int i = 0; i <= 17; i++)
-					{
-						gotoXY(94 + i + moX, 4); cout << " ";
-						gotoXY(94 + i + moX, 5); cout << " ";
-						gotoXY(60 + i + moX, 5); cout << " ";
-					}
+					thongBaoString("DA CO CHUYEN BAY CACH DAY 4 GIO");
 					goto back1;
 				}
 			}
@@ -1641,24 +1355,19 @@ main:
 	}
 	case 19:
 	{
-		//gotoXY(5, 5); cout << "<ESC> QUAY LAI       ";
+
 		char* tmp = new char[100];
 		do {
-			for (int j = 0; j <= 35; j++)
+			for (int j = 0; j <= 20; j++)
 			{
 				gotoXY(40 + j + moX, 19); cout << " ";
 			}
+			boxAddCB();
+			gotoXY(40 + moX, 19); connhay_on();
 			tmp = block_number(1, 40 + moX, 19);
 			if (atoi(tmp) > 60)
 			{
-				gotoXY(94 + moX, 4); cout << "khong hop le";
-				gotoXY(94 + moX, 5); cout << "nhap lai";
-				_getch();
-				for (int i = 0; i <= 15; i++)
-				{
-					gotoXY(94 + i + moX, 4); cout << " ";
-					gotoXY(94 + i + moX, 5); cout << " ";
-				}
+				thongBaoString("KHONG HOP LE");
 			}
 		} while (tmp[0] == '\0' || atoi(tmp) > 60);
 		if (tmp[0] == '.')
@@ -1691,17 +1400,25 @@ main:
 			x.ds_ve.cmnd = ds_cb[i]->ds_ve.cmnd;
 			insert_last(First, x);
 		}
+		deleteBoxAdd();
 		yes_no_fl(First);
 		goto back;
 	}
 	goto main;
 
 }
+void clearPoint() {
+	for (int i = 15; i <= 25; i++) {
+		gotoXY(61, i); cout << " ";
+	}
 
+}
 void cancel_flight(DS_CHUYEN_BAY& First, DS_MAYBAY& mb, chuyen_bay* ds_cb[])
 {
+
 	int movX = 60, movY = 8, movSX = 105, movSY = -2;
 back:
+	clearPoint();
 	TableListCB();
 	char c;
 	char* b = new char[14];
@@ -1957,6 +1674,7 @@ back:
 			gotoXY(27 + i + movX + movSX, 3 + movY + movSY);
 		}
 		if (c == 27)return;
+		
 	} while (c != 13);
 	connhay_off2();
 	if (u == 0)
@@ -1973,10 +1691,10 @@ back:
 key://============================================================================================================//
 	f = 7;
 
-	gotoXY(0 + movX, 7 + movY); cout << "==>";
+	gotoXY(0 + movX + 1, 7 + movY); cout << ">";
 	do
 	{
-		gotoXY(101 + movX, 28); cout << "Trang: " << trang + 1 << "/" << tong;
+		gotoXY(101 + movX, 28 + movY); cout << "Trang: " << trang + 1 << "/" << tong;
 		c = _getch();
 		if (f <= 7 && tong > 1 && trang > 0 && c == 72)
 		{
@@ -2110,13 +1828,13 @@ key://==========================================================================
 		}
 		if (f != 7)
 		{
-			gotoXY(0 + movX, f - 1 + movY);
-			printf("   ");
+			gotoXY(0 + movX + 1, f - 1 + movY);
+			printf(" ");
 		}
 		if (f != 7 + u)
 		{
-			gotoXY(0 + movX, f + 1 + movY);
-			printf("  ");
+			gotoXY(0 + movX + 1, f + 1 + movY);
+			printf(" ");
 		}
 		if (f == 25 && tong > 1 && trang + 1 < tong)
 		{
@@ -2230,9 +1948,24 @@ key://==========================================================================
 			goto key;
 		}
 		cout << "  ";
-		gotoXY(0 + movX, f + movY);
+		gotoXY(0 + movX + 1, f + movY);
 		cout << ">";
-	} while (c != 13 || ds_cb[a[p]]->trangthai == 3 || ds_cb[a[p]]->trangthai == 0);
+
+		if (c == 27)return;
+	} while (c != 13);
+	//bool khongHuy = false;
+	if (ds_cb[a[p]]->trangthai == 3) {
+		thongBaoString("CHUYEN BAY DA HOAN TAT, KHONG THE HUY CHUYEN");
+		//khongHuy = true;
+		goto back;
+	}
+	else if (ds_cb[a[p]]->trangthai == 0) {
+		thongBaoString("CHUYEN BAY DA HUY !!!");
+		//khongHuy = true;
+		goto back;
+	}
+
+
 	//system("cls");
 	//deleteCenter();
 	f = 7;
@@ -2257,8 +1990,7 @@ key://==========================================================================
 	if (yes_no_fl(First) == 0)
 	{
 		//box_nho(10, 13, 100, 3);
-		gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3 + 5 + 20, 24); cout << "DA HUY CHUYEN";
-		Sleep(300);
+		thongBaoString("DA HUY CHUYEN !!!!");
 		goto back;
 	}
 	else { goto back; }
@@ -2266,8 +1998,9 @@ key://==========================================================================
 
 int yes_no_fl(DS_CHUYEN_BAY& First)
 {
-	int movX = 20;
-	gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3 + movX, 15); cout << "BAN CO CHAC LA HUY KHONG";
+	TableListCB();
+	int movX = 7;
+	gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3 + movX, 15); cout << "BAN CO CHAC CHAN KHONG ?";
 	box1(0 + 65 - 1 + 60 + 30 + 15 + 3 + movX, 8 + 5 - 1, 35, 15, 19);
 	gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3 + 5 + movX, 18); cout << "YES";
 	gotoXY(0 + 65 - 1 + 60 + 30 + 15 + 3 + 3 + 5 + movX, 19); cout << "NO";
@@ -2312,10 +2045,11 @@ int yes_no_fl(DS_CHUYEN_BAY& First)
 	{
 	case 18:
 		writefile_flight(First);
+		deleteBoxAdd();
 		deleteListCB();
 		return 0;
 	case 19:
-		deleteBoxAdd1();
+		deleteBoxAdd();
 		clearSearch();
 		return 1;
 	}
@@ -2704,7 +2438,7 @@ void insert_cb(DS_CHUYEN_BAY& First, chuyen_bay& x)
 	//system("cls");
 	deleteListCB();
 
-	gotoXY(50 + movX, 3);
+	gotoXY(65 + 60 + 30 + 15 + 5 - 3 + +7 + 1, 8 + 5 + 1);
 	cout << "CHON SO HIEU";
 	int j = 0;
 	i = search_choi(mb);
@@ -2715,8 +2449,10 @@ void insert_cb(DS_CHUYEN_BAY& First, chuyen_bay& x)
 		x.sohieu[j] = '\0';
 	}
 	deleteListCB();
-xuat:
 
+xuat:
+	gotoXY(65 + 60 + 30 + 15 + 5 - 3 + +7 + 1, 8 + 5 + 1);
+	cout << "              ";
 	x.ds_ve.n = mb.dsmaybay[i]->socho;
 	gotoXY(45 + movX, 12);
 	cout << "So hieu: ";
@@ -2736,8 +2472,9 @@ xuat:
 	gotoXY(45 + movX, 19);
 	cout << "Nhap phut: ";
 	gotoXY(45 + movX, 20);
-	cout << "so luong ve: "; gotoXY(60, 20); cout << x.ds_ve.n;
+	cout << "so luong ve: "; gotoXY(60 + movX, 20); cout << x.ds_ve.n;
 	do {
+		gotoXY(60 + movX, 13); connhay_on2();
 		tmp = block_and_char(15, 60 + movX, 13);
 	} while (tmp[0] == '\0');
 	if (tmp[0] == '.')
@@ -2756,9 +2493,10 @@ xuat:
 	{
 		if (_strcmpi(p->cb.machuyenbay, x.machuyenbay) == 0 && _strcmpi(p->cb.sohieu, x.sohieu) == 0)
 		{
-			gotoXY(94 + movX, 4);
-			cout << "Nhap trung";
-			gotoXY(94 + movX, 5); cout << "Nhap lai";
+			//gotoXY(94 + movX, 4);
+		//	cout << "Nhap trung";
+			thongBaoString("MA CHUYEN BAY DA CO TRONG DANH SACH, NHAP LAI !!!");
+			//gotoXY(94 + movX, 5); cout << "Nhap lai";
 			_getch();
 			for (int i = 0; i <= 10; i++)
 			{
@@ -2766,12 +2504,18 @@ xuat:
 				gotoXY(94 + i + movX, 5); cout << " ";
 				gotoXY(60 + i + movX, 13); cout << " ";
 			}
+			boxAddCB();
+			gotoXY(45 + movX, 12);
+			cout << "So hieu: ";
+			gotoXY(60 + movX, 12); cout << x.sohieu;
 			goto xuat;
 		}
 		p = p->next;
 	}
-
+	connhay_off2();
 	do {
+
+		gotoXY(60 + movX, 14); connhay_on2();
 		tmp = block_char(100, 60 + movX, 14);
 	} while (tmp[0] == '\0');
 	if (tmp[0] == '.')
@@ -2785,6 +2529,7 @@ xuat:
 		n++;
 		x.sanbay[n] = '\0';
 	}
+	connhay_off2();
 	//gotoXY(45, 11);
 	//cout << "Nhap ngay: ";
 	do {
@@ -2792,7 +2537,12 @@ xuat:
 		{
 			gotoXY(60 + i + movX, 15); cout << " ";
 		}
+		boxAddCB();
+		gotoXY(45 + movX, 12);
+		cout << "So hieu: ";
+		gotoXY(60 + movX, 12); cout << x.sohieu;
 		//gotoXY(15, 3);
+		gotoXY(60 + movX, 15); connhay_on2();
 		tmp = block_number(1, 60 + movX, 15);
 	} while (tmp[0] == '\0' || atoi(tmp) > 31);
 	if (tmp[0] == '.')
@@ -2800,6 +2550,7 @@ xuat:
 		return;
 	}
 	x.ngay = atoi(tmp);
+	connhay_off2();
 	//gotoXY(45, 12);
 	//cout << "Nhap thang: ";
 	do {
@@ -2807,7 +2558,12 @@ xuat:
 		{
 			gotoXY(60 + i + movX, 16); cout << " ";
 		}
+		boxAddCB();
+		gotoXY(45 + movX, 12);
+		cout << "So hieu: ";
+		gotoXY(60 + movX, 12); cout << x.sohieu;
 		//gotoXY(15, 4);
+		gotoXY(60 + movX, 16); connhay_on2();
 		tmp = block_number(1, 60 + movX, 16);
 	} while (tmp[0] == '\0' || atoi(tmp) > 12);
 	if (tmp[0] == '.')
@@ -2816,6 +2572,7 @@ xuat:
 		return;
 	}
 	x.thang = atoi(tmp);
+	connhay_off2();
 	//gotoXY(45, 13);
 	//cout << "Nhap nam: ";
 	do {
@@ -2823,7 +2580,12 @@ xuat:
 		{
 			gotoXY(60 + i + movX, 17); cout << " ";
 		}
+		boxAddCB();
+		gotoXY(45 + movX, 12);
+		cout << "So hieu: ";
+		gotoXY(60 + movX, 12); cout << x.sohieu;
 		//gotoXY(15, 5);
+		gotoXY(60 + movX, 17); connhay_on2();
 		tmp = block_number(3, 60 + movX, 17);
 	} while (tmp[0] == '\0' || x.thang < months && atoi(tmp) == years || atoi(tmp) < years);
 	if (tmp[0] == '.')
@@ -2831,6 +2593,7 @@ xuat:
 		return;
 	}
 	x.nam = atoi(tmp);
+	connhay_off2();
 back1:
 	//gotoXY(45, 14);
 	//cout << "Nhap gio: ";
@@ -2839,6 +2602,11 @@ back1:
 		{
 			gotoXY(60 + i + movX, 18); cout << " ";
 		}
+		boxAddCB();
+		gotoXY(45 + movX, 12);
+		cout << "So hieu: ";
+		gotoXY(60 + movX, 12); cout << x.sohieu;
+		gotoXY(60 + movX, 18); connhay_on2();
 		tmp = block_number(1, 60 + movX, 18);
 	} while (tmp[0] == '\0' || days == x.ngay && months == x.thang && years == x.nam && atoi(tmp) - hours < 0 || atoi(tmp)>24);
 	n = 0;
@@ -2853,8 +2621,8 @@ back1:
 			if (p->cb.ngay == x.ngay && p->cb.thang == x.thang && p->cb.nam == x.nam && abs(atoi(tmp) - p->cb.gio) < 4)
 			{
 				//gotoXY(60, 18);
-				gotoXY(94 + movX, 4); cout << "Da co chuyen bay";
-				gotoXY(94 + movX, 4); cout << "cach day 4 gio";
+				thongBaoString("DA CO CHUYEN BAY CACH DAY 4 GIO !!!");
+
 				_getch();
 				for (int i = 0; i <= 10; i++)
 				{
@@ -2867,11 +2635,12 @@ back1:
 		}
 		p = p->next;
 	}
-
+	connhay_off2();
 	x.gio = atoi(tmp);
 	//gotoXY(45, 15);
 	//cout << "Nhap phut: ";
 	do {
+		gotoXY(60 + movX, 19); connhay_on2();
 		tmp = block_number(1, 60 + movX, 19);
 	} while (tmp[0] == '\0' || atoi(tmp) > 60);
 	if (tmp[0] == '.')return;
@@ -2881,6 +2650,7 @@ back1:
 	{
 		x.ds_ve.cmnd[i] = "";
 	}
+	connhay_off2();
 	x.trangthai = 1;
 	x.ds_ve.sl_con = x.ds_ve.n;
 	x.ds_ve.sl_da_ban = 0;
@@ -2888,3 +2658,269 @@ back1:
 	insert_last(First, x);
 	writefile_flight(First);
 }
+
+/*
+	f = 7;
+
+	gotoXY(0 + movX, 7 + movY); cout << "==>";
+	do
+	{
+		gotoXY(101 + movX, 28); cout << "Trang: " << trang + 1 << "/" << tong;
+		c = _getch();
+		if (f <= 7 && tong > 1 && trang > 0 && c == 72)
+		{
+			gotoXY(0 + movX, 7 + movY);
+			cout << "   ";
+			f = 25 ;
+			trang--;
+			int k = 0;
+			int j = 0;
+			while (j <= 18)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(5 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 14; i++)
+				{
+					gotoXY(10 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 13; i++)
+				{
+					gotoXY(25 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 8; i++)
+				{
+					gotoXY(39 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 20; i++)
+				{
+					gotoXY(48 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(69 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(75 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(81 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(87 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(92 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(97 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(103 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 12; i++)
+				{
+					gotoXY(104 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				j++;
+			}
+			k = 7 + movY;
+			for (int i = trang * 18 + 0; i < dem(First) && i <= 18 + trang * 18; i++)
+			{
+				gotoXY(5 + movX, k);
+				cout << i;
+				for (int j = 0; j < mb.sl - 1; j++)
+				{
+					if (_strcmpi(ds_cb[i]->sohieu, mb.dsmaybay[j]->sohieu) == 0)
+					{
+						gotoXY(10 + movX, k);
+						cout << mb.dsmaybay[j]->loaimaybay;
+					}
+				}
+				//cout << mb.dsmaybay[ds_cb[i]->loai]->loaimaybay << endl;
+				gotoXY(25 + movX, k);
+				cout << ds_cb[i]->machuyenbay;
+				gotoXY(40 + movX, k);
+				cout << ds_cb[i]->sohieu;
+				gotoXY(55 + movX, k);
+				cout << ds_cb[i]->sanbay;
+				gotoXY(70 + movX, k);
+				cout << ds_cb[i]->ngay;
+				gotoXY(77 + movX, k);
+				cout << ds_cb[i]->thang;
+				gotoXY(81 + movX, k);
+				cout << ds_cb[i]->nam;
+				gotoXY(88 + movX, k);
+				cout << ds_cb[i]->gio;
+				gotoXY(93 + movX, k);
+				cout << ds_cb[i]->phut;
+				gotoXY(98 + movX, k);
+				cout << ds_cb[i]->ds_ve.n;
+				trang_thai(ds_cb[i]->trangthai, 104 + movX, k);
+				k++;
+			}
+		}
+		if (c == 72)
+		{
+			if (f > 7)
+			{
+				f = f - 1;
+				p--;
+			}
+		}
+		else if (c == 80)
+		{
+			if (f < u + 6 && p <= u - 2)
+			{
+				f += 1;
+				p++;
+			}
+
+		}
+		if (f != 7)
+		{
+			gotoXY(0 + movX, f - 1 + movY);
+			printf("   ");
+		}
+		if (f != 7 + u)
+		{
+			gotoXY(0 + movX, f + 1 + movY);
+			printf("  ");
+		}
+		if (f == 25 && tong > 1 && trang + 1 < tong)
+		{
+			trang++;
+			int k = 0;
+			int j = 0;
+			while (j <= 18)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(5 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 14; i++)
+				{
+					gotoXY(10 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 13; i++)
+				{
+					gotoXY(25 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 8; i++)
+				{
+					gotoXY(39 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 20; i++)
+				{
+					gotoXY(48 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(69 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(75 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(81 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(87 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(92 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(97 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 5; i++)
+				{
+					gotoXY(103 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				for (int i = 0; i < 12; i++)
+				{
+					gotoXY(104 + i + movX, j + 7 + movY);
+					cout << " ";
+				}
+				j++;
+			}
+			k = 7 + movY;
+			for (int i = trang * 18 + 0; i < dem(First) && i <= 18 + trang * 18; i++)
+			{
+				gotoXY(5 + movX, k);
+				cout << i;
+				for (int j = 0; j < mb.sl - 1; j++)
+				{
+					if (_strcmpi(ds_cb[i]->sohieu, mb.dsmaybay[j]->sohieu) == 0)
+					{
+						gotoXY(10 + movX, k);
+						cout << mb.dsmaybay[j]->loaimaybay;
+					}
+				}
+				//cout << mb.dsmaybay[ds_cb[i]->loai]->loaimaybay << endl;
+				gotoXY(25 + movX, k);
+				cout << ds_cb[i]->machuyenbay;
+				gotoXY(40 + movX, k);
+				cout << ds_cb[i]->sohieu;
+				gotoXY(55 + movX, k);
+				cout << ds_cb[i]->sanbay;
+				gotoXY(70 + movX, k);
+				cout << ds_cb[i]->ngay;
+				gotoXY(77 + movX, k);
+				cout << ds_cb[i]->thang;
+				gotoXY(81 + movX, k);
+				cout << ds_cb[i]->nam;
+				gotoXY(88 + movX, k);
+				cout << ds_cb[i]->gio;
+				gotoXY(93 + movX, k);
+				cout << ds_cb[i]->phut;
+				gotoXY(98 + movX, k);
+				cout << ds_cb[i]->ds_ve.n;
+				trang_thai(ds_cb[i]->trangthai, 104 + movX, k);
+				k++;
+			}
+			goto key;
+		}
+		cout << "  ";
+		gotoXY(0 + movX, f + movY);
+		cout << "==>";
+	} while (c != 27);
+
+*/
