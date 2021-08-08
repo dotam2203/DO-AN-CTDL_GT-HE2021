@@ -4,6 +4,8 @@
 #include "KhaiBao.h"
 #include "MayBay.h"
 #include "ChuyenBay.h"
+#include "HanhKhach.h"
+#include "VE.h"
 using namespace std;
 //==========================Color=========================================
 #define Black			0
@@ -30,13 +32,12 @@ void TableListCB();
 
 string menu[n] = { "1. QUAN LY MAY BAY",
 				   "2. QUAN LY CHUYEN BAY",
-				   "3. DAT VE MAY BAY",
-				   "4. HUY VE MAY BAY",
-				   "5. DANH SACH HANH KHACH THUOC 1 CHUYEN BAY",
-				   "6. DANH SACH CHUYEN BAY BAY CUNG NGAY VA TOI CUNG DIA DIEM",
-				   "7. DANH SACH VE TRONG CUA 1 CHUYEN BAY",
-				   "8. THONG KE CHUYEN BAY DA HOAN THANH",
-				   "9. THOAT KHOI CHUONG TRINH" };
+				   "3. DAT VE VA HUY VE",
+				   "4. DANH SACH HANH KHACH THUOC 1 CHUYEN BAY",
+				   "5. DANH SACH CHUYEN BAY BAY CUNG NGAY VA TOI CUNG DIA DIEM",
+				   "6. DANH SACH VE TRONG CUA 1 CHUYEN BAY",
+				   "7. THONG KE CHUYEN BAY DA HOAN THANH",
+				   "8. THOAT KHOI CHUONG TRINH" };
 
 //================================Cau truc man hinh Console================================
 void Background()//nen:den, chu:trang =>den - trang
@@ -119,28 +120,40 @@ void boxAddCB() {
 
 void ButtonDatVe(int color)
 {
-	gotoXY(154, 21); SetbgColor(color); 			 cout << "        ";
-	gotoXY(154, 22); SetbgColor(color); SetColor(10); cout << "   F1   ";
-	gotoXY(154, 23); SetbgColor(color);	SetColor(0); cout << " DAT VE ";
-	gotoXY(154, 24); SetbgColor(color); cout << "        ";
+	gotoXY(x2 + 8, y2 + 4); SetbgColor(color); 			     cout << "        ";
+	gotoXY(x2 + 8, y2 + 5); SetbgColor(color); SetColor(10); cout << "   F1   ";
+	gotoXY(x2 + 8, y2 + 6); SetbgColor(color);	SetColor(0); cout << " DAT VE ";
+	gotoXY(x2 + 8, y2 + 7); SetbgColor(color);               cout << "        ";
 }
 void ButtonHuyVe(int color)
 {
-	gotoXY(154, 26); SetbgColor(color); 				cout << "        ";
-	gotoXY(154, 27); SetbgColor(color); SetColor(12); cout << "   F2   ";
-	gotoXY(154, 28); SetbgColor(color); SetColor(0); cout << " HUY VE ";
-	gotoXY(154, 29); SetbgColor(color); 	cout << "        ";
+	gotoXY(x2 + 20, y2 + 4); SetbgColor(color); 			 cout << "        ";
+	gotoXY(x2 + 20, y2 + 5); SetbgColor(color); SetColor(12);cout << "   F3   ";
+	gotoXY(x2 + 20, y2 + 6); SetbgColor(color); SetColor(0); cout << " HUY VE ";
+	gotoXY(x2 + 20, y2 + 7); SetbgColor(color); 	         cout << "        ";
 	SetbgColor(0); SetColor(15);
 }
 void ButtonESC(int color)
 {
-	gotoXY(154, 31); SetbgColor(color); 			cout << "        ";
-	gotoXY(154, 32); SetbgColor(color); SetColor(9); cout << "  ESC   ";
-	gotoXY(154, 33); SetbgColor(color); SetColor(0); cout << " THOAT  ";
-	gotoXY(154, 34); SetbgColor(color); 	         cout << "        ";
+	gotoXY(x2 + 32, y2 + 4); SetbgColor(color); 			    cout << "        ";
+	gotoXY(x2 + 32, y2 + 5); SetbgColor(color); SetColor(9); cout << "   ESC  ";
+	gotoXY(x2 + 32, y2 + 6); SetbgColor(color); SetColor(0); cout << "  THOAT ";
+	gotoXY(x2 + 32, y2 + 7); SetbgColor(color); 	            cout << "        ";
 }
-void deleteBoxSearch() {
 
+void ButtonEnter(int color)
+{
+	gotoXY(x2 + 44, y2 + 4); SetbgColor(color); 			    cout << "        ";
+	gotoXY(x2 + 44, y2 + 5); SetbgColor(color); SetColor(9);    cout << "  ENTER ";
+	gotoXY(x2 + 44, y2 + 6); SetbgColor(color); SetColor(0);    cout << "  CHON  ";
+	gotoXY(x2 + 44, y2 + 7); SetbgColor(color); 	            cout << "        ";
+}
+
+void deleteTrang()
+{
+	gotoXY(35 + x3, y2 + 27); cout << "                   ";
+	gotoXY(35 + x3, y2 + 28); cout << "                   ";
+	gotoXY(35 + x3, y2 + 29); cout << "                   ";
 }
 void TieuDe()
 {
@@ -149,7 +162,7 @@ void TieuDe()
 	gotoXY(x1, 2); cout << "  / _ \\| | | |/_\\ | \\| | | |\\ \\ / /  / __| || | | | \\ \\ / / __| \\| | | _ ) /_\\ \\ / / | \\| |/ _ \\_ _| |   \\_ _| /_\\ " << "\n";
 	gotoXY(x1, 3); cout << " | (_) | |_| / _ \\| .` | | |_\\ V /  | (__| __ | |_| |\\ V /| _|| .` | | _ \\/ _ \\ V /  | .` | (_) | |  | |) | | / _ \\" << "\n";
 	gotoXY(x1, 4); cout << "  \\__\\_\\\\___/_/ \\_\\_|\\_| |____|_|    \\___|_||_|\\___/  |_| |___|_|\\_| |___/_/ \\_\\_|   |_|\\_|\\___/___| |___/___/_/ \\_\\" << "\n";
-	box(178, 3, 30, 3, 11);
+	box(178, 3, 30, 2, 11);
 	gotoXY(180, 4); cout << "Bui Tan Sang - N18DCCN169";
 	gotoXY(180, 5); cout << "Do Thi Tam - N18DCCN178";
 	SetColor(11); lineW(x2, y2 - 1, 210);
@@ -286,7 +299,6 @@ void deleteBoxEDITCB() {
 
 
 }
-
 void HuongDan()
 {
 	boxThongBao();
@@ -296,14 +308,46 @@ void HuongDan()
 	gotoXY(x2 + 25, y2 + 1); SetColor(29); cout << "HUONG DAN";
 	SetColor(11);
 	gotoXY(x2 + 10, y2 + 3); cout << " SU DUNG 4 PHIM MUI TEN DE DI CHUYEN";
-	gotoXY(x2 + 10, y2 + 4); cout << "INSERT: THEM";
-	gotoXY(x2 + 10, y2 + 5); cout << "DELETE: XOA";
-	gotoXY(x2 + 10, y2 + 6); cout << "F4    : SUA";
+	gotoXY(x2 + 10, y2 + 4); cout << "<F1>     THEM";
+	gotoXY(x2 + 10, y2 + 5); cout << "<DELETE> XOA";
+	gotoXY(x2 + 10, y2 + 6); cout << "<F3>     SUA";
 
-	gotoXY(x2 + 40, y2 + 4);  cout << "ENTER: CHON";
-	gotoXY(x2 + 40, y2 + 5);  cout << "F2 : LUU";
-	gotoXY(x2 + 40, y2 + 6);  cout << "ESC: THOAT";
+	gotoXY(x2 + 40, y2 + 4);  cout << "<ENTER> CHON";
+	gotoXY(x2 + 40, y2 + 5);  cout << "<F2>    LUU";
+	gotoXY(x2 + 40, y2 + 6);  cout << "<ESC>   THOAT";
 }
+
+
+void deleteNormal()
+{
+	/*int i = 0;
+	while(i < 25)
+	{
+		gotoXY(x3 - 4, y3 + i);
+		cout << "                                                                                                                                                  ";
+		i++;
+	}*/
+	system("cls");
+	TieuDe();
+	HuongDan();
+	Time();
+
+}
+
+
+//void deleteHuongDan()
+//{
+//	box(x2, y2, w1, 11, 11);
+//	int j = 1;
+//	for (int i = 0; i < w1; i++)
+//	{
+//		if (j <= 11)
+//		{
+//			gotoXY(x2 + i, y2 + j); SetbgColor(Black); cout << " ";
+//			j++;
+//		}
+//	}
+//}
 
 void TableList()
 {
@@ -355,8 +399,8 @@ int Menu()
 {
 
 	DS_MAYBAY mb;
-	//hanh_khach* ds_hk[MAX];
-	//DS_HANH_KHACH hk;
+	HanhKhach* hk[300];
+	DS_HANHKHACH ds_hk;
 	DS_CHUYEN_BAY First;
 	initialize(First);
 	chuyen_bay cb;
@@ -369,9 +413,13 @@ Menu:
 	Begin();
 	int i, choose = 0;
 	char kytu;
-	char c;
+	//char c;
 
-	for (i = 0; i < n; i++) { gotoXY(x2 + 2, y2 + 16 + i); cout << menu[i] << endl; }
+	for (i = 0; i < n; i++)
+	{
+		gotoXY(x2 + 2, y2 + 16 + i);
+		cout << menu[i] << endl;
+	}
 	gotoXY(x2 + 2, y2 + 16);
 	HLtext();
 	cout << menu[choose];
@@ -397,7 +445,7 @@ Menu:
 				Begin();
 				gotoXY(x2 + 2, y2 + 16 + choose);
 				cout << menu[choose];
-				choose += 8;
+				choose += 7;
 				HLtext();
 				gotoXY(x2 + 2, y2 + 16 + choose);
 				cout << menu[choose];
@@ -424,52 +472,95 @@ Menu:
 				cout << menu[choose];
 			}break;
 		case ESC: return 12;
-		case Enter: {
+		case Enter:
+			{
 			switch (choose)
 			{
-			case 0:
-			{
-				DS_CHUYEN_BAY First;
-				initialize(First);
-				deleteList();
-				SetColor(11);
-				TableList();
-				xem_maybay(mb, First);
-				deleteHD1();
-				deleteCenter();
-				clearSearch();
+				case 0:
+				{
+					DS_CHUYEN_BAY First;
+					initialize(First);
+					deleteList();
+					SetColor(11);
+					TableList();
+					xem_maybay(mb, First);
+					deleteHD1();
+					deleteCenter();
+					clearSearch();
 
-				clearThongBao();
+					clearThongBao();
 
-				goto Menu;
+					goto Menu;
+				}
+				case 1:
+				{
+
+					deleteCenter();
+					DS_CHUYEN_BAY First;
+					initialize(First);
+					deleteList();
+					deleteHD1();
+					SetColor(11);
+					TableListCB();
+					xem_cb(First, mb, ds_cb);
+					deleteListCB();
+					deleteHD1();
+					clearSearch();
+					deleteBoxSearchCB();
+
+					goto Menu;
+				}
+				case 2:
+				{
+				xuat2:
+					deleteNormal();
+					deleteHD1();
+					ButtonDatVe(White);
+					ButtonHuyVe(White);
+					ButtonEnter(White);
+					ButtonESC(White);
+					SetbgColor(0);
+					SetColor(Cyan); gotoXY(x3 + 60, y2 + 10); printf("DAT VE VA HUY VE ");;
+					box_nho(50 + x3, 15 + y2, 20 , 3); gotoXY(55 + x3, 16 + y2); printf("<F1> DAT VE");
+					box_nho(50 + x3, 19 + y2, 20, 3); gotoXY(55 + x3, 20 + y2); printf("<F3> HUY VE");
+					box_nho(50 + x3, 23 + y2, 20, 3); gotoXY(55 + x3, 24 + y2); printf("<ESC> THOAT");
+					
+					(First, ds_cb);
+					result_flight(First, ds_cb);
+					do
+					{
+						kytu = getKey();
+						if (kytu == F1)
+						{
+							deleteNormal();
+							datVe(ds_cb, First, ds_hk, mb);
+							goto xuat2;
+						}
+						else if (kytu == F3)
+						{
+							deleteNormal();
+							huyVe(ds_cb, First, hk, ds_hk, mb);
+							goto xuat2;
+						}
+					} while (kytu != ESC);
+				}break;
+				case 3: break;//tam
+				case 4: break;
+				case 5:
+				{
+					system("cls");
+					connhay_off();
+					in_ve(First, ds_hk, hk, mb, ds_cb);
+					deleteNormal();
+					break;
+				}
+				case 6: break;
+				case 7: break;
+
 			}
-			case 1:
-			{
-
-				deleteCenter();
-				DS_CHUYEN_BAY First;
-				initialize(First);
-				deleteList();
-				deleteHD1();
-				SetColor(11);
-				TableListCB();
-				xem_cb(First, mb, ds_cb);
-				deleteListCB();
-				deleteHD1();
-				clearSearch();
-				deleteBoxSearchCB();
-
-				goto Menu;
 			}
-
-			}
-
-
-
-		}
-		}
-	} while (1);
-
+		} 
+	}while(1);
 }
 
 
@@ -477,6 +568,7 @@ void Khung()
 {
 	TieuDe();
 	HuongDan();
+	Time();
 	//TableList();
 	Menu();
 

@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <ctime> //thu vien ho tro ve thoi gian thuc
 #include <Windows.h>
+//#include "Box.h"
 using namespace std;
 //==========================Color=========================================
 #define Black			0
@@ -28,12 +29,14 @@ using namespace std;
 #define Pink			13
 #define Yellow			14
 #define White			15
-//================================khai bao thao tac phim: F2-save; F4 - edit; Insert - add================================
-const int Up = -72, Down = -80, Left = -75, Right = -77, Enter = 13, ESC = 27, Delete = -83, Insert = -82, F2 = -60, F4 = -62, Space = 32, Backspace = 8;
-const int n = 9, x1 = 50, x2 = 0, y2 = 8, x3 = 65, x4 = 175, w1 = 60, h1 = 2;
+//================================khai bao thao tac phim: F2-save; F3 - edit; Insert/F1 - add================================
+const int Up = -72, Down = -80, Left = -75, Right = -77, Enter = 13, ESC = 27, Delete = -83, Insert = -82, F1 = -59, F2 = -60, F3 = -61, Space = 32, Backspace = 8;
+const int n = 8, x1 = 50, x2 = 0, y2 = 8, x3 = 65, x4 = 180, w1 = 60, h1 = 2, y3 = 11;
 //======= Lay doa do x cua con tro hien tai =============
 #define KEY_NONE	-1
  
+void  box(int x, int y, int w, int h, int mauNen);
+void box_nho(int x, int y, int s, int h);
 int whereX()
 {
 	CONSOLE_SCREEN_BUFFER_INFO csbi;
@@ -134,11 +137,14 @@ void Time()
 	days = ltm->tm_mday;
 	mins = ltm->tm_min;
 	hours = ltm->tm_hour;
-	gotoXY(x3, y2); cout << hours;
-	gotoXY(x3 + 2, y2); cout << ":" << mins << " ";
-	gotoXY(x3 + 5, y2); cout << days;
-	gotoXY(x3 + 7, y2); cout <<"/"<< months;
-	gotoXY(x3 + 9, y2); cout << "/" << years;
+	box_nho(x4, y2, 25, 2);
+	gotoXY(x4 + 2, y2 + 1); SetColor(White); cout << "Time: ";
+	gotoXY(x4 + 8, y2 + 1); cout << hours;
+	gotoXY(x4 + 10, y2 + 1); cout << ":" << mins << " ";
+	gotoXY(x4 + 16, y2 + 1); cout << days;
+	gotoXY(x4 + 18, y2 + 1); cout << "/" << months;
+	gotoXY(x4 + 20, y2 + 1); cout << "/" << years;
+	
 }
 //============== Dung de phan biet phim mui ten vs phim thuong ==============
 int getKey()
@@ -259,7 +265,7 @@ char *chanChuoi(int k, int x, int y)
 	while (1)
 	{
 		c = getKey();
-		if (i <= k && c >= 48 && (c >= 48 && c <= 122) || (c == Space))
+		if (i <= k && c >= 48 && c <= 122 || c == Space)
 		{
 			if (c >= 97 && c <= 122)
 			{
@@ -316,19 +322,19 @@ char *chanSo(int k, int x, int y)
 			cout << c;
 			i++;
 		}
-		if (c == ESC)
-		{
-			connhay_off();
-			s[0] = '.';
-			s[1] = '\0';
-			return s;
-		}
 		if (c == Backspace && i > 0)
 		{
 			gotoXY(x + i - 1, y);
 			cout << " ";
 			gotoXY(x + i - 1, y);
 			i--;
+		}
+		if (c == ESC)
+		{
+			connhay_off();
+			s[0] = '.';
+			s[1] = '\0';
+			return s;
 		}
 		if (c == Enter)
 		{

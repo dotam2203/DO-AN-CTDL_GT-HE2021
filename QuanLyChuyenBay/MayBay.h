@@ -294,7 +294,7 @@ void connhay_on1()//con nhay xuat hien
 }
 
 void deleteHD1() {
-	gotoXY(3, 9); cout << "                                                      ";
+	gotoXY(3, 9);  cout << "                                                      ";
 	gotoXY(3, 10); cout << "                                                      ";
 	gotoXY(3, 11); cout << "                                                      ";
 	gotoXY(3, 12); cout << "                                                      ";

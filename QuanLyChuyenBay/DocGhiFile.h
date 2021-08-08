@@ -12,6 +12,10 @@
 #include "Ve.h"
 using namespace std;
 //======================Hanh Khach================
+HanhKhach* khoiTaoNodeHanhKhach(string CMND);
+void themHKvaoTree(TREE& t, HanhKhach* ptrHK);
+//void inTTHanhKhach(TREE& t, string CMND, int h);
+
 void docFileHanhKhach(TREE &t)
 {
 	HanhKhach* hk;

@@ -13,9 +13,9 @@ VietNam
 Sang
 MB01
 20
-a
-111
-111
+BOEING
+59
+25
 a
 12
 21

@@ -2,6 +2,7 @@
 #include "KhaiBao.h"
 #include "MyLib.h"
 #include "DocGhiFile.h"
+#include "VE.h"
 using namespace std;
 ///*======================= Quan ly hanh khach - Cay nhi phan tim kiem - BST ======================*/
 //struct HanhKhach {
@@ -230,17 +231,11 @@ void themHKvaoTree(TREE& t, HanhKhach* ptrHK)
 			themHKvaoTree(t->left, ptrHK);
 		else if (t->cmnd < ptrHK->cmnd)
 			themHKvaoTree(t->right, ptrHK);
-		/*else if (t->cmnd == ptrHK->cmnd)
-			themHanhKhachMoi(t, ptrHK);*/
 	}
 }
 
 //============= In danh sach hanh khach =============
 //-------------chuyen cay sang mang------------------
-/*khoi tao danh sach o ham main
-* HanhKhach *ds[100];
-* int nds = 0;
-*/
 
 void doiTREEsangARR(TREE t, HanhKhach *hk[], int &ds)
 {
@@ -321,7 +316,7 @@ void doiTREEsangARR(TREE t, HanhKhach *hk[], int &ds)
 
 
 //-------------in danh sach hanh khach theo ho - ten------------------
-void inTTHanhKhach(TREE& t, string CMND, int h)
+void inTTHanhKhach(TREE& t, string CMND, int n)
 {
 	TREE p = t;
 	do

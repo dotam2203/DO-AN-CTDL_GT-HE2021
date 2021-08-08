@@ -161,7 +161,7 @@ void trang_thai(int t, int x, int y)
 	}
 	else if (t == 2)
 	{
-		gotoXY(x, y); cout << "0.Het ve";
+		gotoXY(x, y); cout << "2.Het ve";
 	}
 	else if (t == 3)
 	{
@@ -187,7 +187,7 @@ int result_flight(DS_CHUYEN_BAY& First, chuyenbay* ds_cb[])
 	readfile_plane(mb);
 	if (First == NULL)
 	{
-		cout << "chua co chuyen bay nao";
+		gotoXY(x3 + 20, y2 + 1);  cout << "CHUA CO CHUYEN BAY NAO!";
 		return 0;
 	}
 	gotoXY(5 + movX, 5 + movY);
@@ -252,6 +252,7 @@ int result_flight(DS_CHUYEN_BAY& First, chuyenbay* ds_cb[])
 	}
 	return 0;
 }
+
 void xem_cb(DS_CHUYEN_BAY& First, DS_MAYBAY& mb, chuyen_bay* ds_cb[])
 {
 	int movX = 60, movY = 8, movSX = 105, movSY = -2;
@@ -331,9 +332,6 @@ back:
 			clearThongBao();
 			goto back;
 		}
-
-
-
 
 		if (i <= 14 && c >= 48 && c <= 122 && c != 59 && c != 83 && c != 61 || c == 32)
 		{
