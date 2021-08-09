@@ -18,28 +18,24 @@ void themHKvaoTree(TREE& t, HanhKhach* ptrHK);
 
 void docFileHanhKhach(TREE &t)
 {
-	HanhKhach* hk;
-	DS_HANHKHACH ds;
-	string CMND;
+	HanhKhach* p;
+	DS_HANHKHACH hk;
 	ifstream fin;
-	fin.open("dsHANHKHACH.txt", ios_base::in);
-	/*if (fin.is_open()) cout << "mo file thanh cong!"<<endl;
-	else
-	{
-		cout << "ko mo duoc file!";
-		exit(-1);
-	}*/
+	char a[11];
+	fin.open("ds_hanhkhach.txt");
+	string cmnd;
+	//Free(t);
 	t = NULL;
-	while (!fin.eof())
+	while (fin.eof() != true)
 	{
-		hk = khoiTaoNodeHanhKhach(CMND);
-		getline(fin, CMND);
-		if (CMND == " ") break;
-		fin.get(hk->ho,50 );
-		fin.get(hk->ten, 10);	
-		fin.get(hk->phai, 4);
-		themHKvaoTree(t, hk);
-		ds.slHK++;
+		getline(fin, cmnd);
+		if (cmnd == "")break;
+		p = khoiTaoNodeHanhKhach(cmnd);
+		fin.getline(p->ho, 50);
+		fin.getline(p->ten, 10);
+		fin >> p->phai;
+		themHKvaoTree(t, p);
+		hk.slHK++;
 		fin.ignore();
 	}
 	fin.close();
@@ -66,29 +62,4 @@ void ghiFileHanhKhach(TREE &t)
 	fout.close();
 }
 
-//======================Danh Sach Ve================
-
-//void docFileVe(DS_VeMB& ds, chuyen_bay cb)
-//{
-//	ifstream fin;
-//	fin.open("dsVE.txt", ios_base::in);
-//	while (!fin.eof())
-//	{
-//		VeMB* ve = new VeMB[cb.];
-//		fin >> ds.sttVe->maVe;
-//		fflush(stdin);
-//		getline(fin, ds.sttVe->cmnd);
-//		if (ds.sttVe->cmnd == " ") break;
-//		/*cout << ds.sttVe->maVe;
-//		cout << ds.sttVe->cmnd;*/
-//	}	
-//	fin.close();
-//}
-//
-//
-//void ghiFileVe(DS_VeMB& ds, MAYBAY mb)
-//{
-//	FILE* fout;
-//	fclose(fout);
-//}
 

@@ -49,9 +49,9 @@ int ktTrungCMND(TREE t, string CMND)
 			if (p->cmnd == CMND)
 				return 1;
 			else if (p->cmnd < CMND)
-				ktTrungCMND(p->right, CMND);
+				p = p->right;
 			else
-				ktTrungCMND(p->left, CMND);
+				p = p->left;
 		}
 	} while (1);
 }
@@ -65,7 +65,7 @@ string themCMND(TREE t)
 	{
 		//cmnd = chanSo(Backspace, x1, y2);
 		box(x3 + 20, y2 + 12, 20, 1, White);
-		gotoXY(x3+22, y2+13); cout << "NHAP SO CAN CUOC CONG DAN: ";
+		gotoXY(x3+22, y2+13); cout << "NHAP SO CMND: ";
 		for (int i = 0; i < 12; i++)
 		{
 			gotoXY(x3 + 22 +i,y2+14); cout << " ";
@@ -83,30 +83,6 @@ string themCMND(TREE t)
 	} while (CMND[0] = '\0' || n != 12 || ktTrungCMND(t, CMND) == 1);
 	return CMND;
 }
-//int nhapSoCMND(char* num, int n) 
-//{
-//	int i = 0;
-//	char  getnum;
-//	while (1)
-//	{
-//		//(getnum=getch())!=13 && getnum!=27
-//		getnum = getKey();
-//		if (getnum == Space && i > 0) {
-//			i--;
-//			printf("\b \b");
-//		}
-//		else if (getnum >= '0' && getnum <= '9' && i < n)
-//		{
-//			num[i] = getnum;
-//			putchar(getnum);
-//			i++;
-//		}
-//		if (getnum == Enter && i == n) break;
-//		if (getnum == ESC) return -1;
-//	}
-//	num[i] = '\0';
-//	return 1;
-//}
 
 void nhapTTHK(char* tt)
 {
@@ -210,16 +186,6 @@ void themHanhKhachMoi(DS_HANHKHACH &ds)
 	ds.slHK++;
 	system("cls");
 }
-//void nhapHanhKhach(DS_HANHKHACH list)
-//{
-//	HanhKhach* p = khoiTaoNodeHanhKhach();
-//	fflush(stdin);
-//	getline(cin, p->cmnd);
-//	gets_s(p->ho);
-//	gets_s(p->ten);
-//	gets_s(p->phai);
-//	list.slHK++;
-//}
 
 void themHKvaoTree(TREE& t, HanhKhach* ptrHK)
 {
@@ -270,50 +236,6 @@ void doiTREEsangARR(TREE t, HanhKhach *hk[], int &ds)
 		doiTREEsangARR(t->right, hk, ds);	
 	}
 }
-// -------------sap xep danh sach hanh khach------------------
-//void hoanVi(TREE &a, TREE &b)
-//{
-//	TREE tam = new HanhKhach;
-//	tam->CMND = a->CMND;
-//	tam->ho = a->ho;
-//	tam->ten - a->ten;
-//	tam->phai = a->phai;
-//
-//	a->CMND = b->CMND;
-//	a->ho = b->ho;
-//	a->ten - b->ten;
-//	a->phai = b->phai;
-//
-//	b->CMND = tam->CMND;
-//	b->ho = tam->ho;
-//	b->ten = tam->ten;
-//	b->phai = tam->phai;
-//
-//}
-//void tenHanhKhachTanDan(HanhKhach* list[], int nlist)
-//{
-//	//list = new HanhKhach;
-//	char temp[40];
-//	for (int i = 0; i < nlist; i++)
-//	{
-//		for (int j = i + 1; j < nlist; j++)
-//		{
-//			if (list[i]->ten > list[j]->ten)
-//			{
-//				hoanVi(list[i], list[j]);
-//			}
-//			else if (list[i]->ten == list[j]->ten)
-//			{
-//				if (list[i]->ho > list[j]->ho)
-//				{
-//					hoanVi(list[i], list[j]);
-//				}
-//			}
-//		}
-//	}
-//}
-
-
 
 //-------------in danh sach hanh khach theo ho - ten------------------
 void inTTHanhKhach(TREE& t, string CMND, int n)
@@ -341,14 +263,35 @@ void inTTHanhKhach(TREE& t, string CMND, int n)
 
 void inDSHanhKhach(HanhKhach* hk[], int& ds)
 {
+	int movX = 60, movY = 8;
 	int trang = 0;
 	int tong = 0;
-	for (int i = 0; i < ds; i++)
+	if (ds == 18)
 	{
-		cout << hk[i]->cmnd;
-		cout << hk[i]->ho;
-		cout << hk[i]->ten;
-		cout << hk[i]->phai;
+		trang = 0;
+		tong = 1;
+	}
+	else
+	{
+		tong = (ds / 18 + 1);
+	}
+	gotoXY(5 + movX, 5 + movY);
+	cout << "STT";
+	gotoXY(20 + movX, 5 + movY);
+	cout << "SO THU TU VE";
+	gotoXY(45 + movX, 5 + movY);
+	cout << "CHUNG MINH NHAN DAN";
+	gotoXY(80 + movX, 5 + movY);
+	cout << "HO VA TEN";
+	gotoXY(106 + movX, 5 + movY);
+	cout << "PHAI";
+	for (int i = trang * 18 + 0; i < ds && i <= 18 + trang * 18; i++)
+	{
+		gotoXY(5 + movX, 7 + i + movY); cout << i;
+		gotoXY(20 + movX, 7 + i + movY); cout << hk[i]->cmnd;
+		gotoXY(45 + movX, 7 + i + movY); cout << hk[i]->ho;
+		gotoXY(80 + movX, 7 + i + movY); cout << hk[i]->ten;
+		gotoXY(106 + movX, 7 + i + movY); cout << hk[i]->phai;
 	}
 }
 //------------- Tim kiem hanh khach-------------------

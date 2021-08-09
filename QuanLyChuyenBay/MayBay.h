@@ -12,6 +12,7 @@ using namespace std;
 
 #define xMove 60
 #define yMove 8
+#define MAX 300
 //void delete_plane(DS_MAYBAY& mb, DS_CHUYEN_BAY& First);
 void delete_plane(DS_MAYBAY& mb, DS_CHUYEN_BAY& First);
 void connhay_off1();
@@ -134,7 +135,7 @@ int same_test(DS_MAYBAY& mb, int a)
 	{
 		if (i != a)
 		{
-			if (_stricmp(mb.dsmaybay[a]->sohieu, mb.dsmaybay[i]->sohieu) == 0 /*&& _stricmp(mb.dsmaybay[a]->loaimaybay, mb.dsmaybay[i]->loaimaybay) == 0*/)return 1;
+			if (_stricmp(mb.dsmaybay[a]->sohieu, mb.dsmaybay[i]->sohieu) == 0)return 1;
 		}
 	}
 	return 0;
@@ -159,6 +160,7 @@ int insert_plane(DS_MAYBAY& mb)
 
 	int i = 0;
 	int a;
+
 	char c;
 	int k = 1;
 	char* tmp = new char[100];
@@ -210,14 +212,12 @@ int insert_plane(DS_MAYBAY& mb)
 		}
 		if (same_test(mb, a) == 1)
 		{
-			//	gotoXY(x2 + 65 - 1 + 10 - 5+25, y2 + 5 - 1 - 4 + 1);
-			//	cout << "[ SO HIEU DA CO TRONG DANH SACH]";
+
 			thongBaoString("[ SO HIEU DA CO TRONG DANH SACH]");
-			//	gotoXY(x2 + 65 - 1 + 10 - 5 + 25, y2 + 5 - 1 - 4 + 1); cout << "                                      ";
+
 			gotoXY(pointX, pointY2); cout << "                    ";
 
-			//gotoXY(50, 9);cout << "           ";
-			//gotoXY(50, 9);
+
 			_getch();
 		}
 	} while (same_test(mb, a) == 1);
@@ -253,8 +253,6 @@ int insert_plane(DS_MAYBAY& mb)
 			socho = to_string(mb.dsmaybay[a]->socho);
 			thongBaoString("[ SO CHO " + socho + " < 20 ]");
 			gotoXY(pointX, pointY3);
-
-			//_getch();
 
 		}
 
@@ -294,7 +292,7 @@ void connhay_on1()//con nhay xuat hien
 }
 
 void deleteHD1() {
-	gotoXY(3, 9);  cout << "                                                      ";
+	gotoXY(3, 9); cout << "                                                      ";
 	gotoXY(3, 10); cout << "                                                      ";
 	gotoXY(3, 11); cout << "                                                      ";
 	gotoXY(3, 12); cout << "                                                      ";
@@ -342,7 +340,32 @@ void deleteCenter() {
 	gotoXY(63, 10); cout << "                                                                                                                                                        ";
 	gotoXY(63, 11); cout << "                                                                                                                                                        ";
 	deleteList1();
-
+}
+void deleteCase6() {
+	gotoXY(160, 12); cout << "                                ";
+	gotoXY(160, 13); cout << "                                ";
+	gotoXY(160, 14); cout << "                                ";
+	gotoXY(160, 15); cout << "                                ";
+	gotoXY(160, 16); cout << "                                ";
+	gotoXY(160, 17); cout << "                                ";
+	gotoXY(160, 18); cout << "                                ";
+	gotoXY(160, 19); cout << "                                ";
+	gotoXY(160, 20); cout << "                                ";
+	gotoXY(160, 21); cout << "                                ";
+	gotoXY(160, 22); cout << "                                ";
+	gotoXY(160, 23); cout << "                                ";
+	gotoXY(160, 24); cout << "                                ";
+	gotoXY(160, 25); cout << "                                ";
+	gotoXY(160, 26); cout << "                                ";
+	gotoXY(160, 27); cout << "                                ";
+	gotoXY(160, 28); cout << "                                ";
+	gotoXY(160, 29); cout << "                                ";
+	gotoXY(160, 30); cout << "                                ";
+	gotoXY(160, 31); cout << "                                ";
+	gotoXY(160, 32); cout << "                                ";
+	gotoXY(160, 33); cout << "                                ";
+	gotoXY(160, 34); cout << "                                ";
+	gotoXY(160, 35); cout << "                                ";
 
 }
 
@@ -367,7 +390,7 @@ void deleteBoxAdd1() {
 	gotoXY(tmpX, 23); cout << "                                       ";
 	gotoXY(tmpX, 24); cout << "                                       ";
 	gotoXY(tmpX, 25); cout << "                                       ";
-	gotoXY(tmpX, 26); cout << "                                             ";
+	gotoXY(tmpX, 26); cout << "                                         ";
 	gotoXY(tmpX, 27); cout << "                                        ";
 	gotoXY(tmpX, 28); cout << "                                        ";
 	gotoXY(tmpX, 29); cout << "                                        ";
@@ -389,33 +412,19 @@ void boxInsertPlane1() {
 
 	gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 - 1); cout << "[Loai May Bay]:";
 	box1(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5, 33, 2, 19);
-	// gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3+2+2, y2 + 5 - 1+5+1);
+
 	gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 - 1 + 4); cout << "[So Hieu May Bay]:";
 	box1(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 + 4, 33, 2, 19);
-	// gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2+2, y2 + 5 - 1 + 5+4+1);
+
 	gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 - 1 + 8); cout << "[So ghe ngoi]:";
 	box1(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 + 8, 33, 2, 19);
-	// gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2+2, y2 + 5 - 1 + 5+8+1);
+
 }
 void boxEditPlane1() {
 	int x2 = 0, y2 = 8, w1 = 60;
 	box1(x2 + 65 - 1 + w1 + 30 + 15 + 3, y2 + 5 - 1, 40 - 3, 18 + 3, 19);
 	gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 4 + 10, y2 + 5 - 1 + 1); cout << "[SUA MAY BAY]";
-	//box1(x2 + 65 - 1 + w1 + 30 + 15 + 3, y2 + 5 - 1, 40 - 3, 2, 19);
-
-
-	//gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 - 1); cout << "[Loai May Bay]:";
-	//box1(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5, 33, 2, 19);
-	// gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3+2+2, y2 + 5 - 1+5+1);
-	//gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 - 1 + 4); cout << "[So Hieu May Bay]:";
-	//box1(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 + 4, 33, 2, 19);
-	// gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2+2, y2 + 5 - 1 + 5+4+1);
-	//gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 - 1 + 8); cout << "[So ghe ngoi]:";
-	//box1(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2, y2 + 5 - 1 + 5 + 8, 33, 2, 19);
-	// gotoXY(x2 + 65 - 1 + w1 + 30 + 15 + 3 + 2+2, y2 + 5 - 1 + 5+8+1);
 }
-
-
 
 void xem_maybay(DS_MAYBAY& mb, DS_CHUYEN_BAY& First)
 {
@@ -442,12 +451,8 @@ back:
 	char* b = new char[14];
 	int i = 0;
 	int u = 0;
-	int a[300];
-	//readfile_cb(First);
+	int a[MAX];
 
-	//gotoXY(101, 35); cout << "[Trang]: " << trang + 1 << "/" << tong;
-
-	//connhay_on1();
 	do
 	{
 		ButtonThem1(255);
@@ -606,6 +611,148 @@ back:
 			connhay_on1();
 		}
 		if (c == 27)return;
+	} while (c != 13);
+	if (u == 0)
+	{
+		u = mb.sl;
+		for (int i = 0; i < u - 1; i++)
+		{
+			a[i] = i;
+		}
+		u--;
+	}
+	int f = 7;
+	int p = 0;
+	//=================================================================================================================//
+
+kay:
+	f = 7;
+	gotoXY(movX + 1, movY + 7); cout << ">";
+	do
+	{
+		gotoXY(101, 35); cout << "[Trang]: " << trang + 1 << "/" << tong;
+		c = _getch();
+		if (f <= 7 && tong > 1 && trang > 0 && c == 72)
+		{
+			gotoXY(movX + 1, movY + 7);
+			cout << "   ";
+			f = 25;
+			trang--;
+			int k = 0;
+			int j = 0;
+			while (j <= 18)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(movX + 5 + i, movY + j + 7);
+					cout << " ";
+				}
+				for (int i = 0; i < 50; i++)
+				{
+					gotoXY(movX + 10 + i, movY + j + 7);
+					cout << " ";
+				}
+				for (int i = 0; i < 39; i++)
+				{
+					gotoXY(movX + 61 + i, movY + j + 7);
+					cout << " ";
+				}
+				for (int i = 0; i < 10; i++)
+				{
+					gotoXY(movX + 101 + i, movY + j + 7);
+					cout << " ";
+				}
+				j++;
+			}
+			TableList1();
+			for (int i = 0 + trang * 18; i < mb.sl - 1 && i <= 18 + trang * 18; i++)
+			{
+				gotoXY(movX + 6, movY + k + 7);
+				cout << i;
+				gotoXY(movX + 20, movY + k + 7);
+				cout << mb.dsmaybay[i]->loaimaybay;
+				gotoXY(movX + 75, movY + k + 7);
+				cout << mb.dsmaybay[i]->sohieu << endl;
+				gotoXY(movX + 103, movY + k + 7);
+				cout << mb.dsmaybay[i]->socho;
+				k++;
+			}
+		}
+		if (c == 72)
+		{
+			if (f > 7)
+			{
+				f = f - 1;
+				p--;
+			}
+		}
+		else if (c == 80)
+		{
+			if (f < u + 6 && p <= u - 2)
+			{
+				f += 1;
+				p++;
+			}
+
+		}
+		if (c == 27)goto back;
+		if (f != 7)
+		{
+			gotoXY(movX + 1, movY + f - 1);
+			cout << " ";
+		}
+		if (f != 7 + u)
+		{
+			gotoXY(movX + 1, movY + f + 1);
+			cout << " ";
+		}
+		if (f == 25 && tong > 1 && trang + 1 < tong)
+		{
+			trang++;
+			int k = 0;
+			int j = 0;
+			while (j <= 18)
+			{
+				for (int i = 0; i < 4; i++)
+				{
+					gotoXY(movX + 5 + i, movY + j + 7);
+					cout << " ";
+				}
+				for (int i = 0; i < 50; i++)
+				{
+					gotoXY(movX + 10 + i, movY + j + 7);
+					cout << " ";
+				}
+				for (int i = 0; i < 39; i++)
+				{
+					gotoXY(movX + 61 + i, movY + j + 7);
+					cout << " ";
+				}
+				for (int i = 0; i < 10; i++)
+				{
+					gotoXY(movX + 101 + i, movY + j + 7);
+					cout << " ";
+				}
+				j++;
+			}
+			TableList1();
+			for (int i = 0 + trang * 18; i < mb.sl - 1 && i <= 18 + trang * 18; i++)
+			{
+				gotoXY(movX + 6, movY + k + 7);
+				cout << i;
+				gotoXY(movX + 20, movY + k + 7);
+				cout << mb.dsmaybay[i]->loaimaybay;
+				gotoXY(movX + 75, movY + k + 7);
+				cout << mb.dsmaybay[i]->sohieu << endl;
+				gotoXY(movX + 103, movY + k + 7);
+				cout << mb.dsmaybay[i]->socho;
+				k++;
+			}
+			goto kay;
+		}
+		cout << "  ";
+		gotoXY(movX + 1, movY + f);
+		cout << ">";
 	} while (c != 27);
 
 	ButtonESC1(1);
@@ -1106,20 +1253,14 @@ kay:
 
 		if (_strcmpi(v->cb.sohieu, tmp) == 0)
 		{
-
-
 			gotoXY(0 + 65 - 1 + 10 - 5 + 20, 8 + 5 - 1 - 4 + 1);  cout << "MAY BAY NAY DA DUOC THANH LAP CHUYEN BAY, NEN BAN KHONG DUOC XOA";
 			_getch();
-			v->cb.trangthai = 0;
+			//	v->cb.trangthai = 0;
 			clearThongBao();
 			clearSearch();
 
 			goto back;
-			//	gotoXY(50, 13);
 
-				//_getch();
-				//system("cls");
-				//goto main;
 		}
 		v = v->next;
 	}
@@ -1322,7 +1463,10 @@ back:
 
 			connhay_on1();
 		}
-		if (c == 27)return;
+		if (c == 27) {
+			//	deleteBoxEDITCB();
+			return;
+		}
 	} while (c != 13);
 	connhay_off1();
 	if (u == 0)
@@ -1486,8 +1630,6 @@ main:
 
 	gotoXY(30 + movXX, 10 + movXY); cout << "LoaiMB: " << mb.dsmaybay[a[p]]->loaimaybay;
 
-
-
 	gotoXY(30 + movXX, 11 + movXY); cout << "SoHieuMB: " << mb.dsmaybay[a[p]]->sohieu;
 
 	gotoXY(30 + movXX, 12 + movXY); cout << "So cho: " << mb.dsmaybay[a[p]]->socho;
@@ -1513,7 +1655,7 @@ main:
 		}
 		if (c == 27)
 		{
-
+			deleteBoxAdd1();
 			goto back;
 		}
 		if (k != 10 + movXY)

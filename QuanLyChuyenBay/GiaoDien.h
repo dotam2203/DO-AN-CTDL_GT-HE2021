@@ -128,7 +128,7 @@ void ButtonDatVe(int color)
 void ButtonHuyVe(int color)
 {
 	gotoXY(x2 + 20, y2 + 4); SetbgColor(color); 			 cout << "        ";
-	gotoXY(x2 + 20, y2 + 5); SetbgColor(color); SetColor(12);cout << "   F3   ";
+	gotoXY(x2 + 20, y2 + 5); SetbgColor(color); SetColor(12); cout << "   F3   ";
 	gotoXY(x2 + 20, y2 + 6); SetbgColor(color); SetColor(0); cout << " HUY VE ";
 	gotoXY(x2 + 20, y2 + 7); SetbgColor(color); 	         cout << "        ";
 	SetbgColor(0); SetColor(15);
@@ -234,7 +234,23 @@ void deleteListCB() {
 
 
 }
+void TableListCauF()
+{
+	boxThongBaoCB();
 
+	box(x2 + 65 - 1, y2 + 5 - 1, w1 + 30 + 15 + 7, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, 5, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, 5 + 15, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, 34 + 4, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, 34 + 10 + 17 + 3 + 15 + 10, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, w1 + 30 + 15 + 7, 1, 19);
+}
+void TableListThongKe()
+{
+	box(x2 + 65 - 1, y2 + 5 - 1, w1 + 30 + 15, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, 50, 18 + 4, 19);
+	box(x2 + 65 - 1, y2 + 5 - 1, w1 + 30 + 15, 2, 19);
+}
 void deleteBoxAdd() {
 
 
@@ -320,13 +336,7 @@ void HuongDan()
 
 void deleteNormal()
 {
-	/*int i = 0;
-	while(i < 25)
-	{
-		gotoXY(x3 - 4, y3 + i);
-		cout << "                                                                                                                                                  ";
-		i++;
-	}*/
+
 	system("cls");
 	TieuDe();
 	HuongDan();
@@ -473,94 +483,132 @@ Menu:
 			}break;
 		case ESC: return 12;
 		case Enter:
-			{
+		{
 			switch (choose)
 			{
-				case 0:
+			case 0:
+			{
+				DS_CHUYEN_BAY First;
+				initialize(First);
+				deleteList();
+				SetColor(11);
+				TableList();
+				xem_maybay(mb, First);
+				deleteHD1();
+				deleteCenter();
+				clearSearch();
+
+				clearThongBao();
+
+				goto Menu;
+			}
+			case 1:
+			{
+
+				deleteCenter();
+				DS_CHUYEN_BAY First;
+				initialize(First);
+				deleteList();
+				deleteHD1();
+				SetColor(11);
+				TableListCB();
+				xem_cb(First, mb, ds_cb);
+				deleteListCB();
+				deleteHD1();
+				clearSearch();
+				deleteBoxSearchCB();
+
+				goto Menu;
+			}
+			case 2:
+			{
+				xuly2:
+				//system("cls");
+				deleteNormal();
+				deleteHD1();
+				ButtonDatVe(White);
+				ButtonHuyVe(White);
+				ButtonEnter(White);
+				ButtonESC(White);
+				SetbgColor(0);
+				SetColor(Cyan); gotoXY(x3 + 60, y2 + 10); printf("DAT VE VA HUY VE ");;
+				box_nho(50 + x3, 15 + y2, 20, 3); gotoXY(55 + x3, 16 + y2); printf("<F1> DAT VE");
+				box_nho(50 + x3, 19 + y2, 20, 3); gotoXY(55 + x3, 20 + y2); printf("<F3> HUY VE");
+				box_nho(50 + x3, 23 + y2, 20, 3); gotoXY(55 + x3, 24 + y2); printf("<ESC> THOAT");
+
+				(First, ds_cb);
+				result_flight(First, ds_cb);
+				do
 				{
-					DS_CHUYEN_BAY First;
-					initialize(First);
-					deleteList();
-					SetColor(11);
-					TableList();
-					xem_maybay(mb, First);
-					deleteHD1();
-					deleteCenter();
-					clearSearch();
-
-					clearThongBao();
-
-					goto Menu;
-				}
-				case 1:
-				{
-
-					deleteCenter();
-					DS_CHUYEN_BAY First;
-					initialize(First);
-					deleteList();
-					deleteHD1();
-					SetColor(11);
-					TableListCB();
-					xem_cb(First, mb, ds_cb);
-					deleteListCB();
-					deleteHD1();
-					clearSearch();
-					deleteBoxSearchCB();
-
-					goto Menu;
-				}
-				case 2:
-				{
-				xuat2:
-					deleteNormal();
-					deleteHD1();
-					ButtonDatVe(White);
-					ButtonHuyVe(White);
-					ButtonEnter(White);
-					ButtonESC(White);
-					SetbgColor(0);
-					SetColor(Cyan); gotoXY(x3 + 60, y2 + 10); printf("DAT VE VA HUY VE ");;
-					box_nho(50 + x3, 15 + y2, 20 , 3); gotoXY(55 + x3, 16 + y2); printf("<F1> DAT VE");
-					box_nho(50 + x3, 19 + y2, 20, 3); gotoXY(55 + x3, 20 + y2); printf("<F3> HUY VE");
-					box_nho(50 + x3, 23 + y2, 20, 3); gotoXY(55 + x3, 24 + y2); printf("<ESC> THOAT");
-					
-					(First, ds_cb);
-					result_flight(First, ds_cb);
-					do
+					kytu = getKey();
+					if (kytu == F1)
 					{
-						kytu = getKey();
-						if (kytu == F1)
-						{
-							deleteNormal();
-							datVe(ds_cb, First, ds_hk, mb);
-							goto xuat2;
-						}
-						else if (kytu == F3)
-						{
-							deleteNormal();
-							huyVe(ds_cb, First, hk, ds_hk, mb);
-							goto xuat2;
-						}
-					} while (kytu != ESC);
-				}break;
-				case 3: break;//tam
-				case 4: break;
-				case 5:
-				{
-					system("cls");
-					connhay_off();
-					in_ve(First, ds_hk, hk, mb, ds_cb);
-					deleteNormal();
-					break;
-				}
-				case 6: break;
-				case 7: break;
+						deleteNormal();
+						datVe(ds_cb, First, ds_hk, mb);
+						goto xuly2;
+					}
+					else if (kytu == F3)
+					{
+						deleteNormal();
+						huyVe(ds_cb, First, hk, ds_hk, mb);
+						goto xuly2;
+					}
+				} while (kytu != ESC);
+			}
+			case 3:
+			{
+				
+				system("cls");
+				connhay_off();
+				xemHanhKhach(First, ds_hk, hk, mb, ds_cb);
+				deleteNormal();
+			}break;
+
+			case 4:
+			{
+
+				deleteCenter();
+				DS_CHUYEN_BAY First;
+				initialize(First);
+				in_date(First);
+				deleteCenter();
+				deleteThongBao1();
+				deleteListCB();
+				deleteHD1();
+				SetColor(11);
+
+				goto Menu;
+			}
+			case 5:
+			{
+				system("cls");
+				connhay_off();
+				in_ve(First, ds_hk, hk, mb, ds_cb);
+				deleteNormal();
+				break;
+			}
+			case 6:
+			{
+
+				DS_CHUYEN_BAY First;
+				initialize(First);
+				deleteList();
+				SetColor(11);
+				TableListThongKe();
+				sap_xep(First, mb);
+				deleteHD1();
+				deleteCenter();
+				clearSearch();
+				clearThongBao();
+				goto Menu;
+			}
+
+			case 7: break;
 
 			}
-			}
-		} 
-	}while(1);
+		}
+		}
+	} while (1);
 }
 
 
